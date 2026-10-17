@@ -114,118 +114,6 @@
             border-color: #444;
         }
         
-        button.local-file {
-            background: #224444;
-            border-color: #44aaaa;
-        }
-
-        /* Library Styles */
-        .library-list {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            max-height: 180px;
-            overflow-y: auto;
-            background: #151515;
-            padding: 5px;
-            border-radius: 4px;
-            border: 1px solid #333;
-        }
-
-        .library-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #222;
-            padding: 6px 10px;
-            border-radius: 4px;
-            font-size: 12px;
-            cursor: pointer;
-            border: 1px solid transparent;
-        }
-
-        .library-item:hover {
-            background: #333;
-            border-color: #555;
-        }
-
-        .library-item button.add-btn {
-            padding: 2px 8px;
-            font-size: 16px;
-            line-height: 1;
-            background: transparent;
-            border: none;
-            color: #4caf50;
-        }
-
-        /* Queue Styles */
-        .queue-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            max-height: 150px;
-            overflow-y: auto;
-            background: #151515;
-            border-radius: 4px;
-            border: 1px solid #333;
-        }
-
-        .queue-list li {
-            display: flex;
-            align-items: center;
-            padding: 5px 8px;
-            font-size: 12px;
-            border-bottom: 1px solid #222;
-            background: #1a1a1a;
-        }
-
-        .queue-list li.playing {
-            background: #112211;
-            color: #4caf50;
-            border-left: 3px solid #4caf50;
-        }
-
-        .queue-actions {
-            margin-left: auto;
-            display: flex;
-            gap: 4px;
-        }
-
-        .icon-btn {
-            padding: 2px 6px;
-            font-size: 10px;
-            background: #333;
-            border: 1px solid #444;
-            color: #ccc;
-            border-radius: 3px;
-        }
-        .icon-btn:hover { background: #555; }
-        .btn-del:hover { background: #aa2222; border-color: #ff0000; color: white; }
-
-        .player-controls {
-            display: flex;
-            gap: 5px;
-            margin-top: 5px;
-        }
-
-        .track-name {
-            flex-grow: 1;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        #current-track-name {
-            font-size: 11px;
-            color: #2196f3;
-            height: 15px;
-            overflow: hidden;
-            white-space: nowrap;
-            text-align: center;
-        }
-        
         #loading { display: none; color: #2196f3; font-size: 12px; }
 
         .instructions {
@@ -271,36 +159,6 @@
                 <button onclick="searchCity()">Go</button>
             </div>
             <div id="loading">Loading...</div>
-        </div>
-
-        <!-- Music Library -->
-        <div class="control-group">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-                <label>GitHub Library (jpalmer95)</label>
-                <button onclick="window.radio.fetchLibrary()" style="padding:2px 6px; font-size:10px;">↻ Refresh</button>
-            </div>
-            <div id="library-container" class="library-list">
-                <div style="padding:10px; color:#666; text-align:center;">Music streaming is off by default. Press ↻ Refresh to load the list.</div>
-            </div>
-        </div>
-
-        <!-- Queue & Player -->
-        <div class="control-group">
-            <label>Player Queue</label>
-            
-            <input type="file" id="local-music-file" accept="audio/*" multiple onchange="window.radio.addLocalFiles(this)">
-            <button class="local-file" onclick="document.getElementById('local-music-file').click()">📂 Upload Local MP3s/WAVs</button>
-            
-            <ul id="queue-list" class="queue-list">
-                <li style="padding:10px; color:#666; text-align:center;">Queue is empty</li>
-            </ul>
-
-            <div id="current-track-name">Not Playing</div>
-            <div class="player-controls">
-                <button style="width:40px" onclick="window.radio.playPrev()">⏮</button>
-                <button id="btn-playpause" style="flex-grow:1" onclick="window.radio.toggle()">Play</button>
-                <button style="width:40px" onclick="window.radio.playNext()">⏭</button>
-            </div>
         </div>
 
         <div class="instructions">
@@ -352,7 +210,7 @@
         
         // Audio
         let listener, coinSound, laserSound, boomSound, crashSound;
-        window.radio = null; 
+        window.music = null;
         window.vrMenu = null;
 
         // Environment & Objects
@@ -421,10 +279,9 @@
         // --- Classes ---
 
         class VRMenuSystem {
-            constructor(scene, radio) {
+            constructor(scene) {
                 this.scene = scene;
-                this.radio = radio;
-                
+
                 this.canvas = document.createElement('canvas');
                 this.canvas.width = 512; this.canvas.height = 512;
                 this.ctx = this.canvas.getContext('2d');
@@ -453,19 +310,18 @@
 
             // "Training" is first/default — the ungated, offline first scenario (handoff §4 G1).
             // Picking any other location and travelling to it is the explicit re-enable toggle for
-            // OSM import (Austin) and music streaming.
+            // OSM import (Austin). Music is the bundled suit theme, always available, no network call.
             buildMainOptions() {
                 return [
                     { label: "Location", type: "select", values: ["Training", "Metro", "Neon", "Mars", "Austin"], current: 0, y: 116 },
                     { label: "TRAVEL TO SELECTED", type: "action", action: "warp", y: 154 },
                     { label: "Speed Gear", type: "slider", min: 1, max: 10, current: playerState.gear, y: 192 },
-                    { label: "Toggle Music", type: "action", action: "toggle", y: 230 },
-                    { label: "Next Track", type: "action", action: "next", y: 268 },
-                    { label: "Recenter View", type: "action", action: "recenter", y: 306 },
-                    { label: "Reset Run", type: "action", action: "resetRun", y: 344 },
-                    { label: "Upgrades Shop", type: "action", action: "openShop", y: 382 },
-                    { label: "Close Menu (Resume)", type: "action", action: "close", y: 420 },
-                    { label: "HUD", type: "toggle", action: "toggleHud", y: 458 },
+                    { label: "Music", type: "toggle", action: "toggleMusic", y: 230 },
+                    { label: "Recenter View", type: "action", action: "recenter", y: 268 },
+                    { label: "Reset Run", type: "action", action: "resetRun", y: 306 },
+                    { label: "Upgrades Shop", type: "action", action: "openShop", y: 344 },
+                    { label: "Close Menu (Resume)", type: "action", action: "close", y: 382 },
+                    { label: "HUD", type: "toggle", action: "toggleHud", y: 420 },
                 ];
             }
 
@@ -551,8 +407,7 @@
                     opt.current++; if(opt.current > opt.max) opt.current = opt.min;
                     playerState.gear = opt.current;   // <-- now controls real speed
                 }
-                else if (opt.label === "Toggle Music") this.radio.toggle();
-                else if (opt.label === "Next Track") this.radio.playNext();
+                else if (opt.action === "toggleMusic") window.setMusicEnabled(!window.music.enabled);
                 else if (opt.action === "recenter") { window.recenterPlayer(); this.toggle(); }
                 else if (opt.action === "resetRun") { window.resetRun(); this.toggle(); }
                 else if (opt.action === "openShop") { this.setPage('shop'); return; }
@@ -592,7 +447,10 @@
                     let text = opt.label;
                     if (opt.type === "select") text += `: < ${opt.values[opt.current]} >`;
                     if (opt.type === "slider") text += `: [ ${opt.current} ]`;
-                    if (opt.type === "toggle") text += `: ${suitHudEnabled ? "On" : "Off"}`;
+                    if (opt.type === "toggle") {
+                        const on = opt.action === "toggleMusic" ? (window.music ? window.music.enabled : true) : suitHudEnabled;
+                        text += `: ${on ? "On" : "Off"}`;
+                    }
                     if (opt.type === "shopRow") {
                         const level = economy.levels[opt.key];
                         const maxLevel = UPGRADE_DEFS[opt.key].tiers.length - 1;
@@ -673,106 +531,29 @@
             }
         }
 
-        class RadioSystem {
+        // Bundled suit theme, always local — no station list, no remote fetch. Starts on the first
+        // user gesture (Enter VR, or first desktop click/keypress) because browsers block audio
+        // before one. Single looping track, volume held under the SFX (lowest SFX is laser at 0.3).
+        class MusicSystem {
             constructor(listener) {
-                this.listener = listener;
-                this.audioElement = new Audio();
-                this.audioElement.loop = false; this.audioElement.crossOrigin = "anonymous"; this.audioElement.src = "";
+                this.enabled = true;
+                this.started = false;
+                this.audioElement = new Audio('assets/music/jimbob-theme.mp3');
+                this.audioElement.loop = true;
                 this.sound = new THREE.Audio(listener);
                 this.sound.setMediaElementSource(this.audioElement);
-                this.sound.setVolume(0.5);
-                this.queue = []; this.currentIndex = -1; this.isPlaying = false;
-                this.githubOwner = "jpalmer95"; this.githubRepo = "openmusic";
-
-                this.audioElement.addEventListener('ended', () => this.playNext());
-                this.audioElement.addEventListener('error', () => {
-                    if (this.audioElement.src && this.audioElement.src !== window.location.href) {
-                        this.updateStatus("Error - Skipping");
-                        if (this.queue.length > 0) setTimeout(() => this.playNext(), 1000); 
-                    }
-                });
-                this.audioElement.addEventListener('playing', () => { this.isPlaying = true; this.updatePlayButton(); });
-                this.audioElement.addEventListener('pause', () => { this.isPlaying = false; this.updatePlayButton(); });
-                // Default soundtrack: the suit's own theme (Suno, picked by the owner 10-17), bundled with the
-                // game so no network fetch is needed. With a one-track queue, playNext() loops it.
-                this.sound.setVolume(0.35); // sit under the SFX
-                this.queue.push({ name: "JimBob Theme", url: "assets/audio/jimbob-theme.mp3" });
-                this.currentIndex = 0; this.audioElement.src = this.queue[0].url;
-                // NOTE: no auto-fetch here (handoff §2.6/§4 G1: music streaming gated off by default
-                // for the first scenario). fetchLibrary() only runs when the player explicitly asks
-                // for it, via the 2D "Refresh" button or window.radio.fetchLibrary().
+                this.sound.setVolume(0.22);
             }
-            async fetchLibrary() {
-                const container = document.getElementById('library-container');
-                if(!container) return;
-                container.innerHTML = '<div style="color:#888; text-align:center">Fetching GitHub...</div>';
-                try {
-                    const response = await fetch(`https://api.github.com/repos/${this.githubOwner}/${this.githubRepo}/contents/`);
-                    if (!response.ok) throw new Error("Repo not found");
-                    const files = await response.json();
-                    const audioFiles = files.filter(f => f.name.match(/\.(mp3|wav|ogg)$/i));
-                    container.innerHTML = '';
-                    if (audioFiles.length === 0) { container.innerHTML = 'No audio files found.'; return; }
-                    audioFiles.forEach(file => {
-                        const rawUrl = file.download_url;
-                        const div = document.createElement('div'); div.className = 'library-item';
-                        div.innerHTML = `<span style="overflow:hidden;">${file.name}</span><button class="add-btn">+</button>`;
-                        div.onclick = () => this.addToQueue({ name: file.name, url: rawUrl });
-                        container.appendChild(div);
-                    });
-                } catch (e) { console.error(e); container.innerHTML = '<div style="color:red; text-align:center">Error loading library.</div>'; }
+            start() {
+                if (this.started || !this.enabled) return;
+                this.started = true;
+                this.audioElement.play().catch(e => console.warn('music autoplay blocked', e));
             }
-            addToQueue(track) { this.queue.push(track); this.renderQueue(); if (this.currentIndex === -1) { this.currentIndex = 0; this.loadTrack(0, false); } }
-            addLocalFiles(input) {
-                if (!input.files || input.files.length === 0) return;
-                Array.from(input.files).forEach(file => { this.queue.push({ name: file.name, url: URL.createObjectURL(file), isBlob: true }); });
-                this.renderQueue();
-                if (this.currentIndex === -1) { this.currentIndex = 0; this.loadTrack(0, false); }
-                input.value = '';
+            setEnabled(on) {
+                this.enabled = !!on;
+                if (!this.enabled) { this.audioElement.pause(); }
+                else if (this.started) { this.audioElement.play().catch(() => {}); }
             }
-            removeFromQueue(index) {
-                if (index === this.currentIndex) {
-                    this.audioElement.pause(); this.isPlaying = false; this.queue.splice(index, 1);
-                    if (this.queue.length === 0) { this.currentIndex = -1; this.updateStatus("Queue Empty"); } 
-                    else { if (this.currentIndex >= this.queue.length) this.currentIndex = 0; this.loadTrack(this.currentIndex, false); }
-                } else { this.queue.splice(index, 1); if (index < this.currentIndex) this.currentIndex--; }
-                this.renderQueue(); this.updatePlayButton();
-            }
-            moveQueueItem(index, direction) {
-                if (direction === -1 && index > 0) {
-                    [this.queue[index], this.queue[index-1]] = [this.queue[index-1], this.queue[index]];
-                    if (this.currentIndex === index) this.currentIndex--;
-                    else if (this.currentIndex === index-1) this.currentIndex++;
-                } 
-                else if (direction === 1 && index < this.queue.length - 1) {
-                    [this.queue[index], this.queue[index+1]] = [this.queue[index+1], this.queue[index]];
-                    if (this.currentIndex === index) this.currentIndex++;
-                    else if (this.currentIndex === index+1) this.currentIndex--;
-                }
-                this.renderQueue();
-            }
-            loadTrack(index, autoPlay = true) {
-                if (index < 0 || index >= this.queue.length) return;
-                this.currentIndex = index; const track = this.queue[index];
-                this.audioElement.src = track.url; this.updateStatus(track.name); this.renderQueue(); 
-                if (autoPlay) { if (this.listener.context.state === 'suspended') this.listener.context.resume(); this.audioElement.play().catch(e => { console.warn(e); this.updateStatus("Ready"); }); }
-            }
-            playNext() { if (this.queue.length === 0) return; let next = this.currentIndex + 1; if (next >= this.queue.length) next = 0; this.playTrack(next); }
-            playPrev() { if (this.queue.length === 0) return; let prev = this.currentIndex - 1; if (prev < 0) prev = this.queue.length - 1; this.playTrack(prev); }
-            playTrack(i) { this.loadTrack(i, true); }
-            toggle() { if (this.queue.length === 0) return; if (this.currentIndex === -1) { this.playTrack(0); return; } if (this.isPlaying) this.audioElement.pause(); else this.audioElement.play(); }
-            renderQueue() {
-                const list = document.getElementById('queue-list'); if(!list) return; list.innerHTML = '';
-                if (this.queue.length === 0) { list.innerHTML = '<li style="color:#666; text-align:center">Queue is empty</li>'; return; }
-                this.queue.forEach((track, i) => {
-                    const li = document.createElement('li'); if (i === this.currentIndex) li.classList.add('playing');
-                    li.innerHTML = `<span class="track-name">${i+1}. ${track.name}</span><div class="queue-actions"><button class="icon-btn" onclick="event.stopPropagation(); window.radio.moveQueueItem(${i}, -1)">↑</button><button class="icon-btn" onclick="event.stopPropagation(); window.radio.moveQueueItem(${i}, 1)">↓</button><button class="icon-btn btn-del" onclick="event.stopPropagation(); window.radio.removeFromQueue(${i})">✖</button></div>`;
-                    li.onclick = (e) => { if(e.target.tagName !== 'BUTTON') this.playTrack(i); };
-                    list.appendChild(li);
-                });
-            }
-            updateStatus(text) { const el = document.getElementById('current-track-name'); if(el) el.textContent = text; }
-            updatePlayButton() { const btn = document.getElementById('btn-playpause'); if(btn) btn.innerText = this.isPlaying ? "Pause" : "Play"; }
         }
 
         // --- Helper Functions ---
@@ -1192,6 +973,10 @@
             if (suitHud) suitHud.setEnabled(suitHudEnabled);
             hudLegacyText = '';
             updateHUD();
+        };
+
+        window.setMusicEnabled = function(on) {
+            if (window.music) window.music.setEnabled(on);
         };
 
         function triggerHapticPulse(intensity = 0.35, durationMs = 50) {
@@ -1614,8 +1399,8 @@
                 generateSFX();
 
                 // Globals
-                window.radio = new RadioSystem(listener);
-                window.vrMenu = new VRMenuSystem(scene, window.radio);
+                window.music = new MusicSystem(listener);
+                window.vrMenu = new VRMenuSystem(scene);
                 window.vrGameOver = new VRGameOverSystem(scene);
 
                 const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6); scene.add(hemiLight);
@@ -1628,18 +1413,19 @@
 
                 initSky(); setupVRControllers(); createHUD(); createSuitHud();
                 // Free the HUD's GPU resources when the VR session ends and rebuild it for desktop.
-                renderer.xr.addEventListener('sessionstart', () => { if (window.radio && !window.radio.isPlaying) window.radio.playTrack(window.radio.currentIndex < 0 ? 0 : window.radio.currentIndex); }); // Enter VR is a user gesture, so audio may start
+                renderer.xr.addEventListener('sessionstart', () => window.music.start()); // Enter VR is a user gesture, so audio may start
                 renderer.xr.addEventListener('sessionend', () => { if (suitHud) suitHud.dispose(); createSuitHud(); });
                 scene.add(cityGroup); scene.add(coinsGroup); scene.add(propsGroup); scene.add(enemiesGroup); scene.add(dropsGroup);
                 playerState.maxHealth = valueForLevel('maxHealth', economy.levels.maxHealth);
                 playerState.health = playerState.maxHealth;
-                generateCity('training'); // first scenario: no OSM import, no music auto-fetch (see docs/HANDOFF_LOG.md)
+                generateCity('training'); // first scenario: no OSM import (see docs/HANDOFF_LOG.md)
 
-                document.addEventListener('keydown', (e) => keyState[e.code] = true);
+                document.addEventListener('keydown', (e) => { keyState[e.code] = true; window.music.start(); });
                 document.addEventListener('keyup', (e) => keyState[e.code] = false);
-                
+
                 document.body.addEventListener('click', () => {
                     if (listener.context.state === 'suspended') listener.context.resume();
+                    window.music.start();
                     if(!renderer.xr.isPresenting && document.activeElement.tagName !== 'INPUT') document.body.requestPointerLock();
                 });
                 window.addEventListener('resize', onWindowResize);
