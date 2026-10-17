@@ -5,7 +5,7 @@ This product is a modified version of SuperSonic by Jpalmer95
 (https://github.com/Jpalmer95/SuperSonic), licensed under the Apache License,
 Version 2.0. See LICENSE. The flight model, environments, combat and VR menu
 originate there; this version restructures the code and adds the economy,
-suit HUD, bundled music and offline PWA.
+suit HUD, bundled music, offline PWA, weapons, 3D models and the suit AI voice.
 
 -------------------------------------------------------------------------------
 
@@ -46,6 +46,13 @@ Bundled third-party components:
 - WebXR Input Profiles controller models (xr-input-profiles/),
   https://github.com/immersive-web/webxr-input-profiles - MIT License,
   Copyright (c) 2019 Amazon. Full text in xr-input-profiles/LICENSE.md.
+- meshoptimizer decoder (shipped with three.js as
+  examples/jsm/libs/meshopt_decoder.module.js), https://github.com/zeux/meshoptimizer -
+  MIT License, Copyright (c) 2016-2024 Arseny Kapoulkine.
+
+Original to this project: the 3D models in models/ (designed for Big Back and
+generated with Rodin; ids in the source repository's assets-src/models/SOURCES.tsv)
+and the JimBob voice lines in audio/jimbob/.
 
 Fetched at runtime, never bundled, only when the player picks those places:
 

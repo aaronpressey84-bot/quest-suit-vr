@@ -1,0 +1,312 @@
+[
+ {
+  "id": "boot_01",
+  "event": "boot",
+  "text": "Big Back online! Let's wreck some fun!",
+  "file": "boot_01.mp3",
+  "duration_s": 4.598
+ },
+ {
+  "id": "boot_02",
+  "event": "boot",
+  "text": "They call it the Big Back 'cause it's got your BACK!",
+  "file": "boot_02.mp3",
+  "duration_s": 4.31
+ },
+ {
+  "id": "training_start_01",
+  "event": "training_start",
+  "text": "Training time, rookie! Show me some hustle!",
+  "file": "training_start_01.mp3",
+  "duration_s": 4.18
+ },
+ {
+  "id": "training_start_02",
+  "event": "training_start",
+  "text": "Flex those boosters, we're just warming up!",
+  "file": "training_start_02.mp3",
+  "duration_s": 4.519
+ },
+ {
+  "id": "enemy_spotted_01",
+  "event": "enemy_spotted",
+  "text": "Bogey spotted! Get pumped!",
+  "file": "enemy_spotted_01.mp3",
+  "duration_s": 2.429
+ },
+ {
+  "id": "enemy_spotted_02",
+  "event": "enemy_spotted",
+  "text": "Uh oh, trouble at twelve o'clock!",
+  "file": "enemy_spotted_02.mp3",
+  "duration_s": 6.374
+ },
+ {
+  "id": "target_locked_01",
+  "event": "target_locked",
+  "text": "Target locked! Light it up!",
+  "file": "target_locked_01.mp3",
+  "duration_s": 2.351
+ },
+ {
+  "id": "target_locked_02",
+  "event": "target_locked",
+  "text": "Got a bead on 'em, Big Back style!",
+  "file": "target_locked_02.mp3",
+  "duration_s": 3.579
+ },
+ {
+  "id": "enemy_down_01",
+  "event": "enemy_down",
+  "text": "Boom! Down goes trouble!",
+  "file": "enemy_down_01.mp3",
+  "duration_s": 3.187
+ },
+ {
+  "id": "enemy_down_02",
+  "event": "enemy_down",
+  "text": "Smoked 'em like a pop-tart!",
+  "file": "enemy_down_02.mp3",
+  "duration_s": 4.153
+ },
+ {
+  "id": "enemy_down_03",
+  "event": "enemy_down",
+  "text": "That's a wipeout, baby!",
+  "file": "enemy_down_03.mp3",
+  "duration_s": 4.153
+ },
+ {
+  "id": "enemy_down_04",
+  "event": "enemy_down",
+  "text": "Splat! Who's next?",
+  "file": "enemy_down_04.mp3",
+  "duration_s": 2.586
+ },
+ {
+  "id": "multi_kill_01",
+  "event": "multi_kill",
+  "text": "Double trouble, double smashed!",
+  "file": "multi_kill_01.mp3",
+  "duration_s": 3.344
+ },
+ {
+  "id": "multi_kill_02",
+  "event": "multi_kill",
+  "text": "Whole squad just got Big Backed!",
+  "file": "multi_kill_02.mp3",
+  "duration_s": 3.161
+ },
+ {
+  "id": "coins_pickup_01",
+  "event": "coins_pickup",
+  "text": "Ka-ching! Love that sound!",
+  "file": "coins_pickup_01.mp3",
+  "duration_s": 1.881,
+  "note": "trimmed trailing ad-lib (originals in untrimmed/)"
+ },
+ {
+  "id": "coins_pickup_02",
+  "event": "coins_pickup",
+  "text": "Shiny! Grab it, grab it!",
+  "file": "coins_pickup_02.mp3",
+  "duration_s": 2.038
+ },
+ {
+  "id": "coins_pickup_03",
+  "event": "coins_pickup",
+  "text": "Coins for the Back-pack!",
+  "file": "coins_pickup_03.mp3",
+  "duration_s": 3.814
+ },
+ {
+  "id": "big_coin_haul_01",
+  "event": "big_coin_haul",
+  "text": "Whoa, jackpot! We're rolling in it!",
+  "file": "big_coin_haul_01.mp3",
+  "duration_s": 4.101
+ },
+ {
+  "id": "upgrade_bought_generic_01",
+  "event": "upgrade_bought",
+  "text": "Oh yeah, now we're cooking!",
+  "file": "upgrade_bought_generic_01.mp3",
+  "duration_s": 4.101
+ },
+ {
+  "id": "upgrade_bought_blaster_01",
+  "event": "upgrade_bought_blaster_damage",
+  "text": "Blaster's got some bite now!",
+  "file": "upgrade_bought_blaster_01.mp3",
+  "duration_s": 2.926
+ },
+ {
+  "id": "upgrade_bought_firerate_01",
+  "event": "upgrade_bought_fire_rate",
+  "text": "Trigger finger just got speedy!",
+  "file": "upgrade_bought_firerate_01.mp3",
+  "duration_s": 4.101
+ },
+ {
+  "id": "upgrade_bought_health_01",
+  "event": "upgrade_bought_max_health",
+  "text": "Big Back's got a bigger heart now!",
+  "file": "upgrade_bought_health_01.mp3",
+  "duration_s": 3.422
+ },
+ {
+  "id": "upgrade_bought_magnet_01",
+  "event": "upgrade_bought_magnet_range",
+  "text": "Magnet's reaching further, nice!",
+  "file": "upgrade_bought_magnet_01.mp3",
+  "duration_s": 2.978
+ },
+ {
+  "id": "cant_afford_01",
+  "event": "cant_afford",
+  "text": "Not enough coins yet, keep scrapping!",
+  "file": "cant_afford_01.mp3",
+  "duration_s": 3.918
+ },
+ {
+  "id": "low_health_01",
+  "event": "low_health",
+  "text": "Patched up, but I've seen better days!",
+  "file": "low_health_01.mp3",
+  "duration_s": 4.702
+ },
+ {
+  "id": "low_health_02",
+  "event": "low_health",
+  "text": "Big Back's feeling a little dinged!",
+  "file": "low_health_02.mp3",
+  "duration_s": 2.717
+ },
+ {
+  "id": "critical_health_01",
+  "event": "critical_health",
+  "text": "Whoa whoa, find a heart, quick!",
+  "file": "critical_health_01.mp3",
+  "duration_s": 5.224
+ },
+ {
+  "id": "heal_01",
+  "event": "heal",
+  "text": "Ahh, good as new!",
+  "file": "heal_01.mp3",
+  "duration_s": 3.135,
+  "note": "trimmed trailing ad-lib (originals in untrimmed/)"
+ },
+ {
+  "id": "death_respawn_01",
+  "event": "death_respawn",
+  "text": "Down but never out, reboot time!",
+  "file": "death_respawn_01.mp3",
+  "duration_s": 3.814
+ },
+ {
+  "id": "menu_open_01",
+  "event": "menu_open",
+  "text": "Pick your gear, champ!",
+  "file": "menu_open_01.mp3",
+  "duration_s": 2.482
+ },
+ {
+  "id": "idle_flying_01",
+  "event": "idle_flying",
+  "text": "Wheee, this never gets old!",
+  "file": "idle_flying_01.mp3",
+  "duration_s": 5.146
+ },
+ {
+  "id": "idle_flying_02",
+  "event": "idle_flying",
+  "text": "Living the Big Back life up here!",
+  "file": "idle_flying_02.mp3",
+  "duration_s": 3.344
+ },
+ {
+  "id": "idle_flying_03",
+  "event": "idle_flying",
+  "text": "Cruising, just cruising, no biggie!",
+  "file": "idle_flying_03.mp3",
+  "duration_s": 5.224
+ },
+ {
+  "id": "speed_boost_01",
+  "event": "speed_boost",
+  "text": "Zoom zoom, hang on tight!",
+  "file": "speed_boost_01.mp3",
+  "duration_s": 3.239
+ },
+ {
+  "id": "cluster_missiles_01",
+  "event": "cluster_missiles_fired",
+  "text": "Missiles away, duck and cover!",
+  "file": "cluster_missiles_01.mp3",
+  "duration_s": 3.5
+ },
+ {
+  "id": "nuclear_chicken_01",
+  "event": "nuclear_chicken_launched",
+  "text": "BAWK BAWK BOOM, chicken's flying!",
+  "file": "nuclear_chicken_01.mp3",
+  "duration_s": 4.989
+ },
+ {
+  "id": "mushroom_cloud_01",
+  "event": "mushroom_cloud",
+  "text": "Whoa, that's one big puffball!",
+  "file": "mushroom_cloud_01.mp3",
+  "duration_s": 5.303
+ },
+ {
+  "id": "nano_blade_01",
+  "event": "nano_blade_out",
+  "text": "Nano blade's out, get slicey!",
+  "file": "nano_blade_01.mp3",
+  "duration_s": 2.952
+ },
+ {
+  "id": "chest_beam_01",
+  "event": "chest_beam_firing",
+  "text": "Chest beam charging, feel the heat!",
+  "file": "chest_beam_01.mp3",
+  "duration_s": 3.683
+ },
+ {
+  "id": "lasers_upgraded_01",
+  "event": "lasers_upgraded",
+  "text": "Lasers just got way cooler!",
+  "file": "lasers_upgraded_01.mp3",
+  "duration_s": 3.187
+ },
+ {
+  "id": "enemy_spotted_03",
+  "event": "enemy_spotted",
+  "text": "Heads up, more buddies incoming!",
+  "file": "enemy_spotted_03.mp3",
+  "duration_s": 3.527
+ },
+ {
+  "id": "coins_pickup_04",
+  "event": "coins_pickup",
+  "text": "Scoop it up, Back-pack's hungry!",
+  "file": "coins_pickup_04.mp3",
+  "duration_s": 4.284
+ },
+ {
+  "id": "idle_flying_04",
+  "event": "idle_flying",
+  "text": "Big Back's just vibing, no rush!",
+  "file": "idle_flying_04.mp3",
+  "duration_s": 3.892
+ },
+ {
+  "id": "low_health_03",
+  "event": "low_health",
+  "text": "Ouch, that one stung a bit!",
+  "file": "low_health_03.mp3",
+  "duration_s": 4.415
+ }
+]
