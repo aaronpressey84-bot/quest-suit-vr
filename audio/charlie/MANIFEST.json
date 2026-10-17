@@ -4,125 +4,125 @@
   "event": "boss_wake",
   "text": "It's me! Charlie!! Welcome to candyland!!",
   "file": "boss_wake_01.mp3",
-  "duration_s": 3.912
+  "duration_s": 4.676
  },
  {
   "id": "boss_taunt_01",
   "event": "boss_taunt",
   "text": "Come play in the gumdrop mountains with me!",
   "file": "boss_taunt_01.mp3",
-  "duration_s": 4.248
+  "duration_s": 2.22
  },
  {
   "id": "boss_taunt_02",
   "event": "boss_taunt",
   "text": "The caramel river gets so sticky when it's sad.",
   "file": "boss_taunt_02.mp3",
-  "duration_s": 4.848
+  "duration_s": 5.303
  },
  {
   "id": "boss_taunt_03",
   "event": "boss_taunt",
   "text": "Don't you just love cotton-candy clouds? I do.",
   "file": "boss_taunt_03.mp3",
-  "duration_s": 5.424
+  "duration_s": 5.016
  },
  {
   "id": "boss_taunt_04",
   "event": "boss_taunt",
   "text": "Shh... let the sprinkles fall where they want to.",
   "file": "boss_taunt_04.mp3",
-  "duration_s": 7.68
+  "duration_s": 4.545
  },
  {
   "id": "boss_taunt_05",
   "event": "boss_taunt",
   "text": "Everything's so soft and sweet here, isn't it?",
   "file": "boss_taunt_05.mp3",
-  "duration_s": 4.728
+  "duration_s": 4.571
  },
  {
   "id": "boss_minigun_01",
   "event": "boss_minigun",
   "text": "Here come the sugar sprinkles, wheee!",
   "file": "boss_minigun_01.mp3",
-  "duration_s": 2.952
+  "duration_s": 4.336
  },
  {
   "id": "boss_rockets_01",
   "event": "boss_rockets",
   "text": "Rock candy rockets, up, up, and away~",
   "file": "boss_rockets_01.mp3",
-  "duration_s": 4.08
+  "duration_s": 2.351
  },
  {
   "id": "boss_tail_01",
   "event": "boss_tail",
   "text": "Watch my lollipop tail go swish-swish!",
   "file": "boss_tail_01.mp3",
-  "duration_s": 3.456
+  "duration_s": 3.187
  },
  {
   "id": "boss_hurt_01",
   "event": "boss_hurt",
   "text": "Ow... my gumdrops feel all fuzzy now.",
   "file": "boss_hurt_01.mp3",
-  "duration_s": 3.744
+  "duration_s": 3.344
  },
  {
   "id": "boss_hurt_02",
   "event": "boss_hurt",
   "text": "That stung like a sour candy, hehe.",
   "file": "boss_hurt_02.mp3",
-  "duration_s": 6.192
+  "duration_s": 3.918
  },
  {
   "id": "boss_phase2_01",
   "event": "boss_phase2",
   "text": "Okay, okay. Nap time is over, sweetie.",
   "file": "boss_phase2_01.mp3",
-  "duration_s": 4.416
+  "duration_s": 4.911
  },
  {
   "id": "boss_low_health_01",
   "event": "boss_low_health",
   "text": "My caramel is melting... how rude of you.",
   "file": "boss_low_health_01.mp3",
-  "duration_s": 4.488
+  "duration_s": 4.519
  },
  {
   "id": "boss_defeat_01",
   "event": "boss_defeat",
   "text": "Mmm... time for a long, sugary nap~",
   "file": "boss_defeat_01.mp3",
-  "duration_s": 5.112
+  "duration_s": 3.84
  },
  {
   "id": "player_down_01",
   "event": "player_down",
   "text": "Sweet dreams, little marshmallow.",
   "file": "player_down_01.mp3",
-  "duration_s": 4.872
+  "duration_s": 3.396
  },
  {
   "id": "boss_taunt_06",
   "event": "boss_taunt",
   "text": "Stay a while in my candy land, won't you?",
   "file": "boss_taunt_06.mp3",
-  "duration_s": 4.32
+  "duration_s": 2.795
  },
  {
   "id": "boss_phase2_02",
   "event": "boss_phase2",
   "text": "I'm still dreamy, just... crunchier now.",
   "file": "boss_phase2_02.mp3",
-  "duration_s": 4.128
+  "duration_s": 4.624
  },
  {
   "id": "boss_phase2_corwin",
   "event": "boss_phase2",
   "text": "Aww, come on... I only want 1 kidney!",
   "file": "boss_phase2_corwin.mp3",
-  "duration_s": 4.896
+  "duration_s": 4.493
  }
 ]
