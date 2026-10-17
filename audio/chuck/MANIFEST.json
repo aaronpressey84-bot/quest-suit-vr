@@ -1,0 +1,362 @@
+[
+  {
+    "id": "kills_15_01",
+    "event": "kills_15",
+    "expression": "laugh",
+    "text": "Fifteen down! Nooo, not Gary!",
+    "file": "kills_15_01.mp3",
+    "duration_s": 2.64
+  },
+  {
+    "id": "kills_15_02",
+    "event": "kills_15",
+    "expression": "pout",
+    "text": "RIP Lenny. You were... a goon.",
+    "file": "kills_15_02.mp3",
+    "duration_s": 2.64
+  },
+  {
+    "id": "kills_15_03",
+    "event": "kills_15",
+    "expression": "shocked",
+    "text": "Oof, Bartholomew never saw it coming.",
+    "file": "kills_15_03.mp3",
+    "duration_s": 3.4
+  },
+  {
+    "id": "kills_15_04",
+    "event": "kills_15",
+    "expression": "laugh",
+    "text": "Press F for Doug. He had dreams!",
+    "file": "kills_15_04.mp3",
+    "duration_s": 1.96
+  },
+  {
+    "id": "kills_15_05",
+    "event": "kills_15",
+    "expression": "pout",
+    "text": "Fifteen more goons gone. Goodbye, Chet.",
+    "file": "kills_15_05.mp3",
+    "duration_s": 3.37
+  },
+  {
+    "id": "kills_15_06",
+    "event": "kills_15",
+    "expression": "point",
+    "text": "That's fifteen! Rest easy, Mr. Fluffington.",
+    "file": "kills_15_06.mp3",
+    "duration_s": 3.63
+  },
+  {
+    "id": "low_health_01",
+    "event": "low_health",
+    "expression": "smug",
+    "text": "Uh oh, somebody skipped their vitamins.",
+    "file": "low_health_01.mp3",
+    "duration_s": 3.79
+  },
+  {
+    "id": "low_health_02",
+    "event": "low_health",
+    "expression": "point",
+    "text": "You're lookin' a little crispy there, champ.",
+    "file": "low_health_02.mp3",
+    "duration_s": 3.5
+  },
+  {
+    "id": "low_health_03",
+    "event": "low_health",
+    "expression": "smug",
+    "text": "Health's low! Maybe try... not getting hit?",
+    "file": "low_health_03.mp3",
+    "duration_s": 2.77
+  },
+  {
+    "id": "low_health_04",
+    "event": "low_health",
+    "expression": "laugh",
+    "text": "Careful, you're running on fumes and vibes.",
+    "file": "low_health_04.mp3",
+    "duration_s": 3.06
+  },
+  {
+    "id": "player_down_01",
+    "event": "player_down",
+    "expression": "shocked",
+    "text": "Ohhh, down you go! Big back, bigger oof.",
+    "file": "player_down_01.mp3",
+    "duration_s": 3.19
+  },
+  {
+    "id": "player_down_02",
+    "event": "player_down",
+    "expression": "laugh",
+    "text": "And he's down! Somebody get this guy a nap.",
+    "file": "player_down_02.mp3",
+    "duration_s": 3.29
+  },
+  {
+    "id": "player_down_03",
+    "event": "player_down",
+    "expression": "pout",
+    "text": "Yikes. That one's gonna leave a dent.",
+    "file": "player_down_03.mp3",
+    "duration_s": 2.51
+  },
+  {
+    "id": "player_down_04",
+    "event": "player_down",
+    "expression": "shocked",
+    "text": "Whoa! Flat on the pavement, folks!",
+    "file": "player_down_04.mp3",
+    "duration_s": 3.45
+  },
+  {
+    "id": "respawn_01",
+    "event": "respawn",
+    "expression": "cheer",
+    "text": "And he's back! Round two, let's go!",
+    "file": "respawn_01.mp3",
+    "duration_s": 2.9
+  },
+  {
+    "id": "respawn_02",
+    "event": "respawn",
+    "expression": "point",
+    "text": "Back on your feet! Try not to faceplant this time.",
+    "file": "respawn_02.mp3",
+    "duration_s": 3.92
+  },
+  {
+    "id": "respawn_03",
+    "event": "respawn",
+    "expression": "smug",
+    "text": "Oh good, you're up. The goons missed you.",
+    "file": "respawn_03.mp3",
+    "duration_s": 3.19
+  },
+  {
+    "id": "respawn_04",
+    "event": "respawn",
+    "expression": "cheer",
+    "text": "Here we go again! Same suit, new chances.",
+    "file": "respawn_04.mp3",
+    "duration_s": 3.21
+  },
+  {
+    "id": "coin_haul_01",
+    "event": "coin_haul",
+    "expression": "cheer",
+    "text": "Cha-ching! Look at you, Mr. Moneybags.",
+    "file": "coin_haul_01.mp3",
+    "duration_s": 3.21
+  },
+  {
+    "id": "coin_haul_02",
+    "event": "coin_haul",
+    "expression": "point",
+    "text": "That's a serious coin haul right there.",
+    "file": "coin_haul_02.mp3",
+    "duration_s": 3.68
+  },
+  {
+    "id": "coin_haul_03",
+    "event": "coin_haul",
+    "expression": "laugh",
+    "text": "Coins everywhere! You're basically rich now.",
+    "file": "coin_haul_03.mp3",
+    "duration_s": 3.94
+  },
+  {
+    "id": "coin_haul_04",
+    "event": "coin_haul",
+    "expression": "cheer",
+    "text": "Scooped 'em all! Nice and greedy, I like it.",
+    "file": "coin_haul_04.mp3",
+    "duration_s": 3.34
+  },
+  {
+    "id": "upgrade_bought_01",
+    "event": "upgrade_bought",
+    "expression": "point",
+    "text": "Ooh, fresh upgrade! Look at big shot over here.",
+    "file": "upgrade_bought_01.mp3",
+    "duration_s": 4.02
+  },
+  {
+    "id": "upgrade_bought_02",
+    "event": "upgrade_bought",
+    "expression": "cheer",
+    "text": "Upgraded! You're basically a superhero now. Basically.",
+    "file": "upgrade_bought_02.mp3",
+    "duration_s": 5.62
+  },
+  {
+    "id": "upgrade_bought_03",
+    "event": "upgrade_bought",
+    "expression": "smug",
+    "text": "New gear! Try not to break it immediately.",
+    "file": "upgrade_bought_03.mp3",
+    "duration_s": 2.38
+  },
+  {
+    "id": "upgrade_bought_04",
+    "event": "upgrade_bought",
+    "expression": "cheer",
+    "text": "That's an upgrade! Show it off, go on.",
+    "file": "upgrade_bought_04.mp3",
+    "duration_s": 3.32
+  },
+  {
+    "id": "weapon_bought_01",
+    "event": "weapon_bought",
+    "expression": "smug",
+    "text": "Ooh, fancy. Still gonna miss.",
+    "file": "weapon_bought_01.mp3",
+    "duration_s": 2.93
+  },
+  {
+    "id": "weapon_bought_02",
+    "event": "weapon_bought",
+    "expression": "point",
+    "text": "New toy unlocked! Point it somewhere useful.",
+    "file": "weapon_bought_02.mp3",
+    "duration_s": 3.08
+  },
+  {
+    "id": "weapon_bought_03",
+    "event": "weapon_bought",
+    "expression": "laugh",
+    "text": "Shiny new weapon! The goons are shaking. Probably.",
+    "file": "weapon_bought_03.mp3",
+    "duration_s": 4.68
+  },
+  {
+    "id": "weapon_bought_04",
+    "event": "weapon_bought",
+    "expression": "smug",
+    "text": "Bought a gun, huh? Bold strategy.",
+    "file": "weapon_bought_04.mp3",
+    "duration_s": 3.37
+  },
+  {
+    "id": "nuke_fired_01",
+    "event": "nuke_fired",
+    "expression": "shocked",
+    "text": "WHOA! Okay, that's a lot of chicken.",
+    "file": "nuke_fired_01.mp3",
+    "duration_s": 4.15
+  },
+  {
+    "id": "nuke_fired_02",
+    "event": "nuke_fired",
+    "expression": "cheer",
+    "text": "BOOM! That's the Nuclear Chicken, baby!",
+    "file": "nuke_fired_02.mp3",
+    "duration_s": 3.27
+  },
+  {
+    "id": "nuke_fired_03",
+    "event": "nuke_fired",
+    "expression": "shocked",
+    "text": "That's... a lot of mushroom cloud. Nice.",
+    "file": "nuke_fired_03.mp3",
+    "duration_s": 3.24
+  },
+  {
+    "id": "charlie_wake_01",
+    "event": "charlie_wake",
+    "expression": "cheer",
+    "text": "Here we go, Charlie's up! Get him, big guy!",
+    "file": "charlie_wake_01.mp3",
+    "duration_s": 3.87
+  },
+  {
+    "id": "charlie_wake_02",
+    "event": "charlie_wake",
+    "expression": "point",
+    "text": "Charlie's awake and he's mad! Love that for him.",
+    "file": "charlie_wake_02.mp3",
+    "duration_s": 3.74
+  },
+  {
+    "id": "charlie_wake_03",
+    "event": "charlie_wake",
+    "expression": "cheer",
+    "text": "Let's go, Charlie! Show 'em the tail!",
+    "file": "charlie_wake_03.mp3",
+    "duration_s": 3.63
+  },
+  {
+    "id": "charlie_defeated_01",
+    "event": "charlie_defeated",
+    "expression": "pout",
+    "text": "Aw, Charlie... he fought so hard.",
+    "file": "charlie_defeated_01.mp3",
+    "duration_s": 3.11
+  },
+  {
+    "id": "charlie_defeated_02",
+    "event": "charlie_defeated",
+    "expression": "pout",
+    "text": "Down goes Charlie. He'll be back. Probably.",
+    "file": "charlie_defeated_02.mp3",
+    "duration_s": 2.87
+  },
+  {
+    "id": "charlie_defeated_03",
+    "event": "charlie_defeated",
+    "expression": "pout",
+    "text": "Noo, not the big guy! Rest up, Charlie.",
+    "file": "charlie_defeated_03.mp3",
+    "duration_s": 3.37
+  },
+  {
+    "id": "idle_training_01",
+    "event": "idle_training",
+    "expression": "point",
+    "text": "Training time! Hit the thing, not the floor.",
+    "file": "idle_training_01.mp3",
+    "duration_s": 3.16
+  },
+  {
+    "id": "idle_training_02",
+    "event": "idle_training",
+    "expression": "smug",
+    "text": "Just you and the dummies. No pressure.",
+    "file": "idle_training_02.mp3",
+    "duration_s": 3.89
+  },
+  {
+    "id": "idle_training_03",
+    "event": "idle_training",
+    "expression": "laugh",
+    "text": "Practice makes... slightly less terrible.",
+    "file": "idle_training_03.mp3",
+    "duration_s": 3.19
+  },
+  {
+    "id": "no_damage_streak_01",
+    "event": "no_damage_streak",
+    "expression": "shocked",
+    "text": "Nice shot... for a toaster!",
+    "file": "no_damage_streak_01.mp3",
+    "duration_s": 2.3
+  },
+  {
+    "id": "no_damage_streak_02",
+    "event": "no_damage_streak",
+    "expression": "shocked",
+    "text": "Okay, okay, not bad. Didn't see that coming.",
+    "file": "no_damage_streak_02.mp3",
+    "duration_s": 4.28
+  },
+  {
+    "id": "no_damage_streak_03",
+    "event": "no_damage_streak",
+    "expression": "shocked",
+    "text": "Huh. Not a scratch on you. Weird. Respect.",
+    "file": "no_damage_streak_03.mp3",
+    "duration_s": 3.74
+  }
+]
