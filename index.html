@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#1fd9ff" />
     <link rel="icon" href="/quest-suit-vr/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/quest-suit-vr/icons/icon-192.png" />
-    <script type="module" crossorigin src="/quest-suit-vr/assets/index-Bf-5Tyrt.js"></script>
+    <script type="module" crossorigin src="/quest-suit-vr/assets/index-BLg3Ou3T.js"></script>
     <link rel="stylesheet" crossorigin href="/quest-suit-vr/assets/index-DYv0XvtS.css">
   </head>
   <body>
@@ -18,7 +18,7 @@
       <!-- Location Controls -->
       <div class="control-group">
         <label>Locations</label>
-        <div style="display: flex; gap: 5px">
+        <div style="display: flex; flex-wrap: wrap; gap: 5px">
           <button id="btn-austin" style="flex: 1; border-left: 3px solid #2196f3">
             Austin, TX
           </button>
@@ -26,6 +26,9 @@
           <button id="btn-neon" style="flex: 1">Neon</button>
           <button id="btn-mars" style="flex: 1; border: 1px solid #ff4400; color: #ffaa88">
             Mars
+          </button>
+          <button id="btn-swamp" style="flex: 1; border: 1px solid #6f9a4a; color: #b8e08a">
+            Swamp
           </button>
         </div>
         <div style="display: flex; gap: 5px">
@@ -39,13 +42,14 @@
         <strong>Quest 3 Controls:</strong><br />
         • <strong>Fly:</strong> Hold Triggers (point hands)<br />
         • <strong>Shoot:</strong> A / X<br />
-        • <strong>Weapon:</strong> Left Thumbstick **PUSH** Up/Down (desktop: Q / E or 1-6)<br />
+        • <strong>Weapon:</strong> Left Thumbstick **PUSH** Up/Down (desktop: Q / E or 1-9)<br />
         • <strong>Boost:</strong> Hold Grip (fuel recharges)<br />
         • <strong>Gear +/-:</strong> L/R Thumbstick **CLICK** (1-10 speeds)<br />
         • <strong>Turn:</strong> Right Thumbstick **PUSH** L/R<br />
         • <strong>Menu:</strong> B / Y
       </div>
       <div id="weapon-line">Weapon: Blaster</div>
+      <div id="boss-line" style="display: none"></div>
     </div>
 
     <div id="game-over-screen">
