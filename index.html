@@ -280,7 +280,7 @@
                 <button onclick="window.radio.fetchLibrary()" style="padding:2px 6px; font-size:10px;">↻ Refresh</button>
             </div>
             <div id="library-container" class="library-list">
-                <div style="padding:10px; color:#666; text-align:center;">Loading Songs...</div>
+                <div style="padding:10px; color:#666; text-align:center;">Music streaming is off by default. Press ↻ Refresh to load the list.</div>
             </div>
         </div>
 
@@ -330,6 +330,11 @@
         import { XRControllerModelFactory } from 'three/addons/webxr/XRControllerModelFactory.js';
         import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
         import { Sky } from 'three/addons/objects/Sky.js';
+        import {
+            UPGRADE_DEFS, UPGRADE_KEYS, STORAGE_KEY,
+            rollEnemyTier, hpForTier, coinValueForTier,
+            deserialize, serialize, defaultProgress, valueForLevel, priceForNextLevel, purchaseUpgrade, addCoins,
+        } from './src/systems/economy.js';
 
         // --- Error Handling ---
         window.onerror = function(message, source, lineno, colno, error) {
@@ -352,9 +357,18 @@
         // Environment & Objects
         let cityGroup = new THREE.Group();
         let coinsGroup = new THREE.Group();
-        let propsGroup = new THREE.Group(); 
+        let propsGroup = new THREE.Group();
         let enemiesGroup = new THREE.Group();
-        let projectiles = []; 
+        let dropsGroup = new THREE.Group(); // coin drops from destroyed enemies (magnet-to-player)
+        let projectiles = [];
+
+        // Persistent coin/upgrade economy (localStorage-backed, see src/systems/economy.js)
+        let economy = deserialize(typeof localStorage !== 'undefined' ? localStorage.getItem(STORAGE_KEY) : null);
+        let currentScenario = 'training';
+        let trainingRespawnAt = 0;
+        function saveEconomy() {
+            try { if (typeof localStorage !== 'undefined') localStorage.setItem(STORAGE_KEY, serialize(economy)); } catch (e) { console.warn('progress save failed', e); }
+        }
 
         let sky, sun;
         let starSystem;
@@ -365,7 +379,8 @@
         let hudCanvas, hudCtx;
 
         // Game State
-        let coins = 0;
+        // NOTE: coin total now lives in `economy.coins` (persisted) — see above. `kills` stays a
+        // per-run counter only (not persisted), used for the game-over score display.
         let kills = 0;
         const playerState = {
             flying: true, 
@@ -420,25 +435,54 @@
                 this.cursor.renderOrder = 1001;
                 scene.add(this.cursor);
         
-                this.options = [
-                    { label: "Location", type: "select", values: ["Metro", "Neon", "Mars", "Austin"], current: 0, y: 120 },
-                    { label: "TRAVEL TO SELECTED", type: "action", action: "warp", y: 170 },
-                    { label: "Speed Gear", type: "slider", min: 1, max: 10, current: 5, y: 230 },
-                    { label: "Toggle Music", type: "action", action: "toggle", y: 290 },
-                    { label: "Next Track", type: "action", action: "next", y: 350 },
-                    { label: "Close Menu", type: "action", action: "close", y: 410 }
-                ];
+                this.page = 'main';
+                this.options = this.buildMainOptions();
                 this.hoverIndex = -1;
                 this.redraw();
             }
-        
+
+            // "Training" is first/default — the ungated, offline first scenario (handoff §4 G1).
+            // Picking any other location and travelling to it is the explicit re-enable toggle for
+            // OSM import (Austin) and music streaming.
+            buildMainOptions() {
+                return [
+                    { label: "Location", type: "select", values: ["Training", "Metro", "Neon", "Mars", "Austin"], current: 0, y: 116 },
+                    { label: "TRAVEL TO SELECTED", type: "action", action: "warp", y: 154 },
+                    { label: "Speed Gear", type: "slider", min: 1, max: 10, current: playerState.gear, y: 192 },
+                    { label: "Toggle Music", type: "action", action: "toggle", y: 230 },
+                    { label: "Next Track", type: "action", action: "next", y: 268 },
+                    { label: "Recenter View", type: "action", action: "recenter", y: 306 },
+                    { label: "Reset Run", type: "action", action: "resetRun", y: 344 },
+                    { label: "Upgrades Shop", type: "action", action: "openShop", y: 382 },
+                    { label: "Close Menu (Resume)", type: "action", action: "close", y: 420 },
+                ];
+            }
+
+            buildShopOptions() {
+                const rowH = 45;
+                const rows = UPGRADE_KEYS.map((key, i) => ({
+                    label: UPGRADE_DEFS[key].label, type: "shopRow", action: `buy:${key}`, key, y: 120 + i * rowH,
+                }));
+                const extraY = 120 + UPGRADE_KEYS.length * rowH;
+                rows.push({ label: "Reset Progress", type: "action", action: "resetProgress", y: extraY + 15 });
+                rows.push({ label: "Back", type: "action", action: "back", y: extraY + 65 });
+                return rows;
+            }
+
+            setPage(page) {
+                this.page = page;
+                this.options = page === 'shop' ? this.buildShopOptions() : this.buildMainOptions();
+                this.hoverIndex = -1;
+                this.redraw();
+            }
+
             toggle() {
                 if (playerState.isGameOver) return;
                 this.mesh.visible = !this.mesh.visible;
                 this.cursor.visible = this.mesh.visible;
                 playerState.menuOpen = this.mesh.visible;
                 if (laserPointer) laserPointer.visible = this.mesh.visible;
-        
+
                 if(this.mesh.visible) {
                     playerState.velocity.set(0,0,0);
                     const forward = new THREE.Vector3(0, 0, -1).applyQuaternion(camera.quaternion);
@@ -447,6 +491,7 @@
                     spawnPos.y = camera.position.y + dolly.position.y;
                     this.mesh.position.copy(spawnPos);
                     this.mesh.lookAt(camera.position.clone().add(dolly.position));
+                    this.setPage('main');
                     this.options[2].current = playerState.gear;   // <-- fixed to real gear
                     this.mesh.updateMatrixWorld(true);
                     this.redraw();
@@ -469,7 +514,7 @@
                     const uv = intersects[0].uv;
                     const canvasY = (1 - uv.y) * 512;
                     let newHover = -1;
-                    this.options.forEach((opt, i) => { if (Math.abs(canvasY - opt.y) < 25) newHover = i; });
+                    this.options.forEach((opt, i) => { if (Math.abs(canvasY - opt.y) < 17) newHover = i; });
                     if (this.hoverIndex !== newHover) { this.hoverIndex = newHover; this.redraw(); }
                     return true; 
                 } else {
@@ -484,7 +529,7 @@
                 const opt = this.options[this.hoverIndex];
                 if (opt.label === "Location") {
                     opt.current = (opt.current + 1) % opt.values.length;
-                } 
+                }
                 else if (opt.label === "TRAVEL TO SELECTED") {
                     const locOpt = this.options[0];
                     const loc = locOpt.values[locOpt.current];
@@ -495,10 +540,29 @@
                     opt.current++; if(opt.current > opt.max) opt.current = opt.min;
                     playerState.gear = opt.current;   // <-- now controls real speed
                 }
-
                 else if (opt.label === "Toggle Music") this.radio.toggle();
                 else if (opt.label === "Next Track") this.radio.playNext();
-                else if (opt.label === "Close Menu") this.toggle();
+                else if (opt.action === "recenter") { window.recenterPlayer(); this.toggle(); }
+                else if (opt.action === "resetRun") { window.resetRun(); this.toggle(); }
+                else if (opt.action === "openShop") { this.setPage('shop'); return; }
+                else if (opt.action === "back") { this.setPage('main'); return; }
+                else if (opt.action === "resetProgress") { window.resetProgress(); this.setPage('shop'); return; }
+                else if (opt.type === "shopRow") {
+                    const result = purchaseUpgrade(economy, opt.key);
+                    if (result.bought) {
+                        economy = result.progress;
+                        saveEconomy();
+                        if (opt.key === 'maxHealth') {
+                            playerState.maxHealth = valueForLevel('maxHealth', result.newLevel);
+                            playerState.health = Math.min(playerState.maxHealth, playerState.health + result.healAmount);
+                        }
+                        if(coinSound.isPlaying) coinSound.stop(); coinSound.play();
+                        updateHUD();
+                    }
+                    this.setPage('shop'); // refresh displayed prices/levels either way
+                    return;
+                }
+                else if (opt.label === "Close Menu (Resume)") this.toggle();
                 this.redraw();
             }
 
@@ -506,20 +570,26 @@
                 const ctx = this.ctx; const w = this.canvas.width; const h = this.canvas.height;
                 ctx.fillStyle = "rgba(20, 20, 30, 0.95)"; ctx.fillRect(0, 0, w, h);
                 ctx.strokeStyle = "#4caf50"; ctx.lineWidth = 8; ctx.strokeRect(4, 4, w-8, h-8);
-                ctx.fillStyle = "#4caf50"; ctx.font = "bold 40px Arial"; ctx.textAlign = "center"; ctx.fillText("SYSTEM MENU", w/2, 60);
-                ctx.font = "30px Arial";
+                ctx.fillStyle = "#4caf50"; ctx.font = "bold 36px Arial"; ctx.textAlign = "center";
+                ctx.fillText(this.page === 'shop' ? "UPGRADES SHOP" : "SYSTEM MENU", w/2, 50);
+                ctx.font = "16px Arial"; ctx.fillStyle = "#ffcc00";
+                ctx.fillText(this.page === 'shop' ? `Coins: ${economy.coins}` : "GAME PAUSED", w/2, 75);
+                ctx.font = "24px Arial";
                 this.options.forEach((opt, i) => {
-                    if (i === this.hoverIndex) { ctx.fillStyle = "#226622"; ctx.fillRect(40, opt.y - 35, w - 80, 50); ctx.fillStyle = "#fff"; } else { ctx.fillStyle = "#aaa"; }
+                    if (i === this.hoverIndex) { ctx.fillStyle = "#226622"; ctx.fillRect(30, opt.y - 18, w - 60, 34); ctx.fillStyle = "#fff"; } else { ctx.fillStyle = "#aaa"; }
                     let text = opt.label;
                     if (opt.type === "select") text += `: < ${opt.values[opt.current]} >`;
                     if (opt.type === "slider") text += `: [ ${opt.current} ]`;
+                    if (opt.type === "shopRow") {
+                        const level = economy.levels[opt.key];
+                        const maxLevel = UPGRADE_DEFS[opt.key].tiers.length - 1;
+                        const price = priceForNextLevel(opt.key, level);
+                        text = price === null ? `${opt.label}  Lv.${level}/${maxLevel} (MAX)` : `${opt.label}  Lv.${level}/${maxLevel} → ${price}c`;
+                    }
                     ctx.textAlign = "center"; ctx.fillText(text, w/2, opt.y);
                 });
-                if (playerState.menuOpen) {
-                    ctx.fillStyle = this.hoverIndex !== -1 ? "#00ff00" : "#ff0000";
-                    ctx.beginPath(); ctx.arc(this.cursorX, this.cursorY, 8, 0, Math.PI*2); ctx.fill();
-                }
-                ctx.fillStyle = "#666"; ctx.font = "20px Arial"; ctx.fillText("Pointer & Trigger to Select", w/2, h - 30);
+                ctx.fillStyle = "#666"; ctx.font = "16px Arial";
+                ctx.fillText("Pointer & Trigger to Select", w/2, h - 20);
                 this.texture.needsUpdate = true;
             }
         }
@@ -610,7 +680,9 @@
                 });
                 this.audioElement.addEventListener('playing', () => { this.isPlaying = true; this.updatePlayButton(); });
                 this.audioElement.addEventListener('pause', () => { this.isPlaying = false; this.updatePlayButton(); });
-                this.fetchLibrary();
+                // NOTE: no auto-fetch here (handoff §2.6/§4 G1: music streaming gated off by default
+                // for the first scenario). fetchLibrary() only runs when the player explicitly asks
+                // for it, via the 2D "Refresh" button or window.radio.fetchLibrary().
             }
             async fetchLibrary() {
                 const container = document.getElementById('library-container');
@@ -750,12 +822,20 @@
             scene.add(bullet); projectiles.push(bullet);
         }
 
+        const ENEMY_GEO = new THREE.OctahedronGeometry(2, 0);
+        const ENEMY_TIER_COLORS = { 1: 0xff0000, 2: 0xff8800, 3: 0xaa00ff }; // tougher = hotter color, readable at a glance
+
+        function makeEnemyMesh(tier) {
+            const mat = new THREE.MeshStandardMaterial({ color: ENEMY_TIER_COLORS[tier] || 0xff0000, metalness: 0.5, roughness: 0.2 });
+            const mesh = new THREE.Mesh(ENEMY_GEO, mat);
+            mesh.userData = { tier, hp: hpForTier(tier) };
+            return mesh;
+        }
+
         function spawnEnemies(count, radius, isPlanet) {
             while(enemiesGroup.children.length > 0) enemiesGroup.remove(enemiesGroup.children[0]);
-            const geo = new THREE.OctahedronGeometry(2, 0);
-            const mat = new THREE.MeshStandardMaterial({ color: 0xff0000, metalness: 0.5, roughness: 0.2 });
             for(let i=0; i<count; i++) {
-                const mesh = new THREE.Mesh(geo, mat);
+                const mesh = makeEnemyMesh(rollEnemyTier());
                 if (isPlanet) {
                     const vec = new THREE.Vector3((Math.random()-0.5), (Math.random()-0.5), (Math.random()-0.5)).normalize().multiplyScalar(radius + 30 + Math.random()*100);
                     mesh.position.copy(vec);
@@ -764,6 +844,30 @@
                 }
                 enemiesGroup.add(mesh);
             }
+        }
+
+        // Training scenario: easy, close, always tier-1 (one-shot) targets near spawn, with a short
+        // respawn delay so a new player always has something to aim at while earning coins.
+        const TRAINING_SPOTS = [
+            new THREE.Vector3(0, 1.8, -15),
+            new THREE.Vector3(10, 1.8, -18),
+            new THREE.Vector3(-10, 1.8, -18),
+        ];
+        function spawnTrainingTargets() {
+            while(enemiesGroup.children.length > 0) enemiesGroup.remove(enemiesGroup.children[0]);
+            TRAINING_SPOTS.forEach((pos) => {
+                const mesh = makeEnemyMesh(1);
+                mesh.position.copy(pos);
+                enemiesGroup.add(mesh);
+            });
+        }
+        function spawnTrainingTarget() {
+            const occupied = enemiesGroup.children.map(m => m.position);
+            const spot = TRAINING_SPOTS.find(s => !occupied.some(p => p.distanceTo(s) < 1));
+            if (!spot) return;
+            const mesh = makeEnemyMesh(1);
+            mesh.position.copy(spot);
+            enemiesGroup.add(mesh);
         }
 
         function createGroundTexture(type) {
@@ -868,10 +972,12 @@
             while(cityGroup.children.length > 0) cityGroup.remove(cityGroup.children[0]);
             while(coinsGroup.children.length > 0) coinsGroup.remove(coinsGroup.children[0]);
             while(propsGroup.children.length > 0) propsGroup.remove(propsGroup.children[0]);
+            while(dropsGroup.children.length > 0) dropsGroup.remove(dropsGroup.children[0]);
             if(starSystem) scene.remove(starSystem);
             let buildingColors; let density = 150; let isNight = false;
             playerState.isPlanet = false;
-            
+            currentScenario = type;
+
             const rgbeLoader = new RGBELoader();
             const loadEnv = (url) => {
                 rgbeLoader.load(url, (texture) => {
@@ -879,8 +985,23 @@
                     scene.background = texture; scene.environment = envMap; texture.dispose();
                 });
             };
-            
-            if (type === 'city') {
+
+            if (type === 'training') {
+                // First scenario: fully offline, no OSM/city-import and no music streaming (handoff
+                // §2.6/§4 G1) — a simple close-range area with 3 stationary targets to learn controls
+                // and earn starting coins. No ambient coin pickups here; coins come from kills only.
+                scene.background = new THREE.Color(0x87CEEB);
+                scene.fog.color.setHex(0x87CEEB); scene.fog.far = 400;
+                const floorGeo = new THREE.PlaneGeometry(400, 400);
+                const floorMat = new THREE.MeshStandardMaterial({ color: 0x2d3a24, roughness: 1.0 });
+                const floor = new THREE.Mesh(floorGeo, floorMat); floor.rotation.x = -Math.PI / 2;
+                floor.receiveShadow = true;
+                cityGroup.add(floor);
+                spawnTrainingTargets();
+                trainingRespawnAt = 0;
+                return; // EXIT EARLY — no OSM, no HDRI fetch, no enemy spawner
+            }
+            else if (type === 'city') {
                  // Real World Mode - Daylight
                  loadEnv('https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/kloofendal_48d_partly_cloudy_puresky_1k.hdr');
                  scene.fog.color.setHex(0xaabbcc); scene.fog.far = 800; isNight = false;
@@ -1014,13 +1135,56 @@
             hudCtx.font = "bold 36px Arial";
             hudCtx.fillStyle = "#00ff00";
             hudCtx.textAlign = "center";
-            hudCtx.fillText(`Coins: ${coins}  Kills: ${kills}  HP: ${playerState.health}`, 256, 55);
+            hudCtx.fillText(`Coins: ${economy.coins}  Kills: ${kills}  HP: ${playerState.health}/${playerState.maxHealth}`, 256, 55);
             
             hudCtx.font = "bold 28px Arial";
             hudCtx.fillStyle = "#ffff00";
             hudCtx.fillText(`GEAR ${playerState.gear}   BOOST ${Math.floor(playerState.boosterFuel)}%`, 256, 95);
             
             if (hudTexture) hudTexture.needsUpdate = true;
+        }
+
+        function triggerHapticPulse(intensity = 0.35, durationMs = 50) {
+            const session = renderer.xr.getSession();
+            if (!session) return;
+            for (const source of session.inputSources) {
+                const actuator = source.gamepad && source.gamepad.hapticActuators && source.gamepad.hapticActuators[0];
+                if (actuator) actuator.pulse(intensity, durationMs);
+            }
+        }
+
+        function spawnCoinDrop(position, value, time) {
+            const geo = new THREE.TorusGeometry(0.5, 0.18, 8, 16);
+            const mat = new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 1, roughness: 0.1, emissive: 0x886600, emissiveIntensity: 0.6 });
+            const drop = new THREE.Mesh(geo, mat);
+            drop.position.copy(position);
+            drop.userData = { value, settleUntil: time + 0.15 };
+            dropsGroup.add(drop);
+        }
+
+        function updateCoinDrops(dt, time) {
+            const magnetRange = valueForLevel('magnetRange', economy.levels.magnetRange);
+            const playerPos = dolly.position;
+            for (let i = dropsGroup.children.length - 1; i >= 0; i--) {
+                const drop = dropsGroup.children[i];
+                drop.rotation.y += 3 * dt;
+                const toPlayer = new THREE.Vector3().subVectors(playerPos, drop.position);
+                const dist = toPlayer.length();
+                if (time > drop.userData.settleUntil && dist < magnetRange) {
+                    // Snap toward the player, faster the closer it gets — a "satisfying" magnet pull.
+                    const pull = Math.max(8, (magnetRange - dist) * 6);
+                    toPlayer.normalize();
+                    drop.position.addScaledVector(toPlayer, pull * dt);
+                }
+                if (dist < 1.4) {
+                    dropsGroup.remove(drop);
+                    economy = addCoins(economy, drop.userData.value);
+                    saveEconomy();
+                    if (coinSound.isPlaying) coinSound.stop(); coinSound.play();
+                    triggerHapticPulse(0.3, 40);
+                    updateHUD();
+                }
+            }
         }
 
         function updateGameObjects(dt, time) {
@@ -1030,10 +1194,16 @@
                 c.rotation.y += 2 * dt;
                 if (playerPos.distanceTo(c.position) < 5) {
                     coinsGroup.remove(c);
-                    coins++;
+                    economy = addCoins(economy, 1);
+                    saveEconomy();
                     if(coinSound.isPlaying) coinSound.stop(); coinSound.play();
                     updateHUD();
                 }
+            }
+            updateCoinDrops(dt, time);
+            if (currentScenario === 'training' && enemiesGroup.children.length < 3 && time > trainingRespawnAt) {
+                spawnTrainingTarget();
+                trainingRespawnAt = time + 2.5;
             }
             if (!playerState.isPlanet) {
                 propsGroup.children.forEach(prop => {
@@ -1085,10 +1255,14 @@
                 for(let j=enemiesGroup.children.length-1; j>=0; j--) {
                     const e = enemiesGroup.children[j];
                     if (p.position.distanceTo(e.position) < 5) { // Hitbox size
-                        enemiesGroup.remove(e);
-                        if(boomSound.isPlaying) boomSound.stop(); boomSound.play();
-                        kills++;
-                        updateHUD();
+                        e.userData.hp -= valueForLevel('damage', economy.levels.damage);
+                        if (e.userData.hp <= 0) {
+                            enemiesGroup.remove(e);
+                            if(boomSound.isPlaying) boomSound.stop(); boomSound.play();
+                            kills++;
+                            spawnCoinDrop(e.position, coinValueForTier(e.userData.tier), time);
+                            updateHUD();
+                        }
                         hit = true;
                         break;
                     }
@@ -1098,7 +1272,7 @@
                     projectiles.splice(i, 1);
                 }
             }
-        
+
             // *** NEW: ENEMY COLLISION DAMAGE (-2 HP) ***
             for(let j=enemiesGroup.children.length-1; j>=0; j--) {
                 const e = enemiesGroup.children[j];
@@ -1114,8 +1288,9 @@
                             return;
                         }
                     }
-                    // Destroy enemy on contact
+                    // Destroy enemy on contact — it's still destroyed either way, so it still pays out.
                     enemiesGroup.remove(e);
+                    spawnCoinDrop(e.position, coinValueForTier(e.userData.tier), time);
                 }
             }
         
@@ -1281,9 +1456,11 @@
                 const isLeft = source.handedness === 'left';
                 const controller = getControllerByHandedness(source.handedness);
         
-                // SHOOT: A / X (index 4)
+                // SHOOT: A / X (index 4) — cooldown is the base 0.15s scaled by the Fire Rate upgrade
+                // (level 0 multiplier is 1.0, so unupgraded fire rate is byte-identical to before).
                 if (gp.buttons[4]?.pressed && !playerState.menuOpen) {
-                    if (controller && (!controller.userData.lastFire || time - controller.userData.lastFire > 0.15)) {
+                    const cooldown = 0.15 * valueForLevel('fireRate', economy.levels.fireRate);
+                    if (controller && (!controller.userData.lastFire || time - controller.userData.lastFire > cooldown)) {
                         spawnProjectile(controller);
                         controller.userData.lastFire = time;
                     }
@@ -1400,8 +1577,10 @@
                 scene.add(dirLight);
 
                 initSky(); setupVRControllers(); createHUD();
-                scene.add(cityGroup); scene.add(coinsGroup); scene.add(propsGroup); scene.add(enemiesGroup);
-                generateCity('metro');
+                scene.add(cityGroup); scene.add(coinsGroup); scene.add(propsGroup); scene.add(enemiesGroup); scene.add(dropsGroup);
+                playerState.maxHealth = valueForLevel('maxHealth', economy.levels.maxHealth);
+                playerState.health = playerState.maxHealth;
+                generateCity('training'); // first scenario: no OSM import, no music auto-fetch (see docs/HANDOFF_LOG.md)
 
                 document.addEventListener('keydown', (e) => keyState[e.code] = true);
                 document.addEventListener('keyup', (e) => keyState[e.code] = false);
@@ -1438,7 +1617,7 @@
             playerState.isGameOver = true;
             playerState.velocity.set(0,0,0);
             
-            const finalScore = coins + (kills * 5);
+            const finalScore = economy.coins + (kills * 5);
             document.getElementById('final-score').innerText = `Score: ${finalScore}`;
             document.getElementById('game-over-screen').style.display = 'flex';
             document.getElementById('ui-container').style.opacity = '0';
@@ -1449,23 +1628,67 @@
             console.log("%cGAME OVER — Press ANY Trigger to Restart in VR", "color:#ff0000;font-size:18px");
         }
         
+        // Coins and upgrade levels are persistent currency now (localStorage-backed economy), not a
+        // per-run score — a reboot/respawn must NOT wipe them. Only `kills` (a per-run counter) resets.
         window.restartGame = function() {
             playerState.isGameOver = false;
             playerState.health = playerState.maxHealth;
-            coins = 0; kills = 0;
+            kills = 0;
             playerState.velocity.set(0,0,0);
-            
+
             document.getElementById('game-over-screen').style.display = 'none';
             document.getElementById('ui-container').style.opacity = '1';
-            
+
             if (window.vrGameOver) window.vrGameOver.hide();
-            
+
             // Reset player position
             if (playerState.isPlanet) {
                  dolly.position.set(0, playerState.planetRadius + 10, 0);
             } else {
                  dolly.position.set(0,0,0);
             }
+            updateHUD();
+        };
+
+        // In-menu "Reset Run" — same idea as restartGame() but usable without a game-over state
+        // first (G1 basics: visible pause/recenter/reset). Does not touch coins/upgrades.
+        window.resetRun = function() {
+            playerState.isGameOver = false;
+            playerState.health = playerState.maxHealth;
+            playerState.velocity.set(0,0,0);
+            playerState.invulnerableUntil = 0;
+            if (window.vrGameOver) window.vrGameOver.hide();
+            document.getElementById('game-over-screen').style.display = 'none';
+            document.getElementById('ui-container').style.opacity = '1';
+            if (playerState.isPlanet) {
+                dolly.position.set(0, playerState.planetRadius + 10, 0);
+            } else {
+                dolly.position.set(0,0,0);
+            }
+            dolly.rotation.set(0,0,0);
+            dolly.quaternion.identity();
+            updateHUD();
+        };
+
+        // In-menu "Recenter" — resets heading/position to spawn without touching health or the
+        // current run, for predictability during supervised play (handoff §2.7).
+        window.recenterPlayer = function() {
+            playerState.velocity.set(0,0,0);
+            if (playerState.isPlanet) {
+                dolly.position.set(0, playerState.planetRadius + 10, 0);
+            } else {
+                dolly.position.set(0,0,0);
+            }
+            dolly.rotation.set(0,0,0);
+            dolly.quaternion.identity();
+        };
+
+        // Shop "Reset progress" — wipes persisted coins + upgrade levels only (not the current run).
+        window.resetProgress = function() {
+            economy = defaultProgress();
+            saveEconomy();
+            playerState.maxHealth = valueForLevel('maxHealth', 0);
+            if (playerState.health > playerState.maxHealth) playerState.health = playerState.maxHealth;
             updateHUD();
         };
 
