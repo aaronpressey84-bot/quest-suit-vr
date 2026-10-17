@@ -335,6 +335,7 @@
             rollEnemyTier, hpForTier, coinValueForTier,
             deserialize, serialize, defaultProgress, valueForLevel, priceForNextLevel, purchaseUpgrade, addCoins,
         } from './src/systems/economy.js';
+        import { createHud } from './src/ui/hud-overlay.js';
 
         // --- Error Handling ---
         window.onerror = function(message, source, lineno, colno, error) {
@@ -377,6 +378,15 @@
         // HUD
         let hudTexture, hudMesh;
         let hudCanvas, hudCtx;
+        let hudLegacyText = ''; // last text drawn on the small readout; redraw only when it changes
+
+        // Suit HUD (src/ui/hud-overlay.js). When on, it replaces the small readout above.
+        let suitHud = null;
+        let suitHudEnabled = true;
+        const suitHudState = {
+            health: 0, maxHealth: 0, coins: 0, kills: 0, speed: 0, boost: 0, maxBoost: 0, gear: 1,
+            menuOpen: false, gameOver: false, enemies: null, aim: null,
+        };
 
         // Game State
         // NOTE: coin total now lives in `economy.coins` (persisted) — see above. `kills` stays a
@@ -455,6 +465,7 @@
                     { label: "Reset Run", type: "action", action: "resetRun", y: 344 },
                     { label: "Upgrades Shop", type: "action", action: "openShop", y: 382 },
                     { label: "Close Menu (Resume)", type: "action", action: "close", y: 420 },
+                    { label: "HUD", type: "toggle", action: "toggleHud", y: 458 },
                 ];
             }
 
@@ -545,6 +556,7 @@
                 else if (opt.action === "recenter") { window.recenterPlayer(); this.toggle(); }
                 else if (opt.action === "resetRun") { window.resetRun(); this.toggle(); }
                 else if (opt.action === "openShop") { this.setPage('shop'); return; }
+                else if (opt.action === "toggleHud") window.setHudEnabled(!suitHudEnabled);
                 else if (opt.action === "back") { this.setPage('main'); return; }
                 else if (opt.action === "resetProgress") { window.resetProgress(); this.setPage('shop'); return; }
                 else if (opt.type === "shopRow") {
@@ -580,6 +592,7 @@
                     let text = opt.label;
                     if (opt.type === "select") text += `: < ${opt.values[opt.current]} >`;
                     if (opt.type === "slider") text += `: [ ${opt.current} ]`;
+                    if (opt.type === "toggle") text += `: ${suitHudEnabled ? "On" : "Off"}`;
                     if (opt.type === "shopRow") {
                         const level = economy.levels[opt.key];
                         const maxLevel = UPGRADE_DEFS[opt.key].tiers.length - 1;
@@ -1128,6 +1141,12 @@
 
         function updateHUD() {
             if(!hudCtx) return;
+            if (hudMesh) hudMesh.visible = !suitHudEnabled;
+            if (suitHudEnabled) return; // folded into the suit HUD
+            const line1 = `Coins: ${economy.coins}  Kills: ${kills}  HP: ${playerState.health}/${playerState.maxHealth}`;
+            const line2 = `GEAR ${playerState.gear}   BOOST ${Math.floor(playerState.boosterFuel)}%`;
+            if (line1 + line2 === hudLegacyText) return; // called every frame; only redraw on change
+            hudLegacyText = line1 + line2;
             hudCtx.clearRect(0,0,512,128);
             hudCtx.fillStyle = "rgba(0,0,0,0.6)";
             hudCtx.fillRect(0,0,512,128);
@@ -1135,14 +1154,40 @@
             hudCtx.font = "bold 36px Arial";
             hudCtx.fillStyle = "#00ff00";
             hudCtx.textAlign = "center";
-            hudCtx.fillText(`Coins: ${economy.coins}  Kills: ${kills}  HP: ${playerState.health}/${playerState.maxHealth}`, 256, 55);
+            hudCtx.fillText(line1, 256, 55);
             
             hudCtx.font = "bold 28px Arial";
             hudCtx.fillStyle = "#ffff00";
-            hudCtx.fillText(`GEAR ${playerState.gear}   BOOST ${Math.floor(playerState.boosterFuel)}%`, 256, 95);
+            hudCtx.fillText(line2, 256, 95);
             
             if (hudTexture) hudTexture.needsUpdate = true;
         }
+
+        function createSuitHud() {
+            suitHud = createHud({ scene, camera, enabled: suitHudEnabled });
+        }
+
+        // Feeds the suit HUD real game state only; the HUD throttles its own canvas redraws.
+        function updateSuitHud(dt) {
+            if (!suitHud) return;
+            const s = suitHudState;
+            s.health = playerState.health; s.maxHealth = playerState.maxHealth;
+            s.coins = economy.coins; s.kills = kills;
+            s.speed = playerState.velocity.length();
+            s.boost = playerState.boosterFuel; s.maxBoost = playerState.maxBoosterFuel;
+            s.gear = playerState.gear;
+            s.menuOpen = playerState.menuOpen; s.gameOver = playerState.isGameOver;
+            s.enemies = enemiesGroup.children; // enemiesGroup sits at the scene origin, so .position is world-space
+            s.aim = renderer.xr.isPresenting ? (getControllerByHandedness('right') || null) : null; // desktop: camera (KeyF fires from it)
+            suitHud.update(s, dt);
+        }
+
+        window.setHudEnabled = function(on) {
+            suitHudEnabled = !!on;
+            if (suitHud) suitHud.setEnabled(suitHudEnabled);
+            hudLegacyText = '';
+            updateHUD();
+        };
 
         function triggerHapticPulse(intensity = 0.35, durationMs = 50) {
             const session = renderer.xr.getSession();
@@ -1576,7 +1621,9 @@
                 dirLight.shadow.mapSize.width = 4096; dirLight.shadow.mapSize.height = 4096;
                 scene.add(dirLight);
 
-                initSky(); setupVRControllers(); createHUD();
+                initSky(); setupVRControllers(); createHUD(); createSuitHud();
+                // Free the HUD's GPU resources when the VR session ends and rebuild it for desktop.
+                renderer.xr.addEventListener('sessionend', () => { if (suitHud) suitHud.dispose(); createSuitHud(); });
                 scene.add(cityGroup); scene.add(coinsGroup); scene.add(propsGroup); scene.add(enemiesGroup); scene.add(dropsGroup);
                 playerState.maxHealth = valueForLevel('maxHealth', economy.levels.maxHealth);
                 playerState.health = playerState.maxHealth;
@@ -1607,6 +1654,7 @@
             updateGameObjects(dt, time); 
             updatePhysics(dt, time); 
             controllers.forEach(c => { const line = c.getObjectByName('line'); if(line) line.visible = playerState.menuOpen; });
+            updateSuitHud(dt);
 
             renderer.render(scene, camera); 
         }
@@ -1640,6 +1688,7 @@
             document.getElementById('ui-container').style.opacity = '1';
 
             if (window.vrGameOver) window.vrGameOver.hide();
+            if (suitHud) suitHud.reset();
 
             // Reset player position
             if (playerState.isPlanet) {
@@ -1658,6 +1707,7 @@
             playerState.velocity.set(0,0,0);
             playerState.invulnerableUntil = 0;
             if (window.vrGameOver) window.vrGameOver.hide();
+            if (suitHud) suitHud.reset();
             document.getElementById('game-over-screen').style.display = 'none';
             document.getElementById('ui-container').style.opacity = '1';
             if (playerState.isPlanet) {
@@ -1732,6 +1782,7 @@
         
         window.switchLocation = function(type) {
             generateCity(type);
+            if (suitHud) suitHud.reset();
             playerState.velocity.set(0,0,0);
             if (type === 'mars') {
                 dolly.position.set(0, playerState.planetRadius + 10, 0);
