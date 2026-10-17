@@ -693,6 +693,11 @@
                 });
                 this.audioElement.addEventListener('playing', () => { this.isPlaying = true; this.updatePlayButton(); });
                 this.audioElement.addEventListener('pause', () => { this.isPlaying = false; this.updatePlayButton(); });
+                // Default soundtrack: the suit's own theme (Suno, picked by the owner 10-17), bundled with the
+                // game so no network fetch is needed. With a one-track queue, playNext() loops it.
+                this.sound.setVolume(0.35); // sit under the SFX
+                this.queue.push({ name: "JimBob Theme", url: "assets/audio/jimbob-theme.mp3" });
+                this.currentIndex = 0; this.audioElement.src = this.queue[0].url;
                 // NOTE: no auto-fetch here (handoff §2.6/§4 G1: music streaming gated off by default
                 // for the first scenario). fetchLibrary() only runs when the player explicitly asks
                 // for it, via the 2D "Refresh" button or window.radio.fetchLibrary().
@@ -1623,6 +1628,7 @@
 
                 initSky(); setupVRControllers(); createHUD(); createSuitHud();
                 // Free the HUD's GPU resources when the VR session ends and rebuild it for desktop.
+                renderer.xr.addEventListener('sessionstart', () => { if (window.radio && !window.radio.isPlaying) window.radio.playTrack(window.radio.currentIndex < 0 ? 0 : window.radio.currentIndex); }); // Enter VR is a user gesture, so audio may start
                 renderer.xr.addEventListener('sessionend', () => { if (suitHud) suitHud.dispose(); createSuitHud(); });
                 scene.add(cityGroup); scene.add(coinsGroup); scene.add(propsGroup); scene.add(enemiesGroup); scene.add(dropsGroup);
                 playerState.maxHealth = valueForLevel('maxHealth', economy.levels.maxHealth);
