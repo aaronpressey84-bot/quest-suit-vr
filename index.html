@@ -8,8 +8,8 @@
     <meta name="theme-color" content="#1fd9ff" />
     <link rel="icon" href="/quest-suit-vr/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/quest-suit-vr/icons/icon-192.png" />
-    <script type="module" crossorigin src="/quest-suit-vr/assets/index-DPlkw_x0.js"></script>
-    <link rel="stylesheet" crossorigin href="/quest-suit-vr/assets/index-CI6EZBEA.css">
+    <script type="module" crossorigin src="/quest-suit-vr/assets/index-CCTWV4PN.js"></script>
+    <link rel="stylesheet" crossorigin href="/quest-suit-vr/assets/index-FayDK0xC.css">
   </head>
   <body>
     <div id="ui-container">
@@ -49,6 +49,26 @@
           <button id="btn-search">Go</button>
         </div>
         <div id="loading">Loading...</div>
+      </div>
+
+      <!-- Co-op rooms: one player hosts, the other joins with the 4-character code -->
+      <div class="control-group" id="net-group">
+        <label>Multiplayer (co-op)</label>
+        <div id="net-title">Multiplayer</div>
+        <div id="net-lines"></div>
+        <div style="display: flex; gap: 5px">
+          <button id="btn-net-host" style="flex: 1">Host a room</button>
+          <input
+            type="text"
+            id="net-code"
+            placeholder="Code"
+            maxlength="5"
+            autocomplete="off"
+            style="width: 70px; text-transform: uppercase"
+          />
+          <button id="btn-net-join">Join</button>
+          <button id="btn-net-leave" style="display: none">Leave room</button>
+        </div>
       </div>
 
       <button id="btn-controls" class="controls-open">Controls (Quest 3 and keyboard)</button>
