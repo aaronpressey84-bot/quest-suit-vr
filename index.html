@@ -8,8 +8,8 @@
     <meta name="theme-color" content="#1fd9ff" />
     <link rel="icon" href="/quest-suit-vr/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/quest-suit-vr/icons/icon-192.png" />
-    <script type="module" crossorigin src="/quest-suit-vr/assets/index-25qP37Nt.js"></script>
-    <link rel="stylesheet" crossorigin href="/quest-suit-vr/assets/index-BnaiTru1.css">
+    <script type="module" crossorigin src="/quest-suit-vr/assets/index-DPlkw_x0.js"></script>
+    <link rel="stylesheet" crossorigin href="/quest-suit-vr/assets/index-CI6EZBEA.css">
   </head>
   <body>
     <div id="ui-container">
@@ -51,20 +51,8 @@
         <div id="loading">Loading...</div>
       </div>
 
+      <button id="btn-controls" class="controls-open">Controls (Quest 3 and keyboard)</button>
       <div class="instructions">
-        <strong>Quest 3 Controls:</strong><br />
-        • <strong>Fly:</strong> Hold Triggers (point hands)<br />
-        • <strong>Shoot:</strong> A / X<br />
-        • <strong>Weapon:</strong> Left Thumbstick **PUSH** Up/Down (desktop: Q / E or 1-9)<br />
-        • <strong>Boost:</strong> Hold Grip (fuel recharges)<br />
-        • <strong>Gear +/-:</strong> L/R Thumbstick **CLICK** (1-10 speeds)<br />
-        • <strong>Turn:</strong> Right Thumbstick **PUSH** L/R<br />
-        • <strong>Menu:</strong> B / Y<br />
-        • <strong>Land / walk:</strong> touch down slowly, or Right Thumbstick **PUSH** Down
-        (desktop: V)<br />
-        • <strong>Walking:</strong> Left Stick walk (click: sprint), Right Stick snap turn and
-        Up/Down weapon, A / X jump, Trigger shoot, hold Grip or jump twice to fly (desktop: WASD,
-        Space jump, Shift sprint, V fly)<br />
         • <strong>Berserker:</strong> never flies. Left Stick run (click: sprint), A / X jump,
         Trigger attack (far: dash at the enemy; close: combo, keep pressing), Right Stick snap turn
         (desktop: WASD, Space jump, Shift sprint, F attack)
@@ -112,6 +100,14 @@
       <button id="perf-report-copy" class="install-btn secondary">Copy report</button>
       <button id="perf-report-send" class="install-btn secondary">Send report to Fuse</button>
       <span id="perf-report-sent" class="perf-report-sent"></span>
+    </div>
+    <div id="controls-page" class="hidden">
+      <h2 id="controls-title">Controls</h2>
+      <div id="controls-tabs"></div>
+      <p id="controls-note"></p>
+      <h3>Keyboard</h3>
+      <table id="controls-keys"></table>
+      <button id="controls-back" class="install-btn">Back</button>
     </div>
     <div id="update-toast">New version loaded</div>
     <div id="update-note" class="hidden">Update ready: it installs when you leave VR</div>
