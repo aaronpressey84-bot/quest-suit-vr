@@ -8,12 +8,19 @@
     <meta name="theme-color" content="#1fd9ff" />
     <link rel="icon" href="/quest-suit-vr/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/quest-suit-vr/icons/icon-192.png" />
-    <script type="module" crossorigin src="/quest-suit-vr/assets/index-_K2gZ900.js"></script>
+    <script type="module" crossorigin src="/quest-suit-vr/assets/index-25qP37Nt.js"></script>
     <link rel="stylesheet" crossorigin href="/quest-suit-vr/assets/index-BnaiTru1.css">
   </head>
   <body>
     <div id="ui-container">
       <h1>World Explorer</h1>
+
+      <!-- Character select -->
+      <div class="control-group">
+        <label>Character</label>
+        <!-- One button per character, from src/data/characters.ts (src/web/characterButtons.ts) -->
+        <div id="character-buttons" style="display: flex; gap: 5px"></div>
+      </div>
 
       <!-- Location Controls -->
       <div class="control-group">
@@ -57,7 +64,10 @@
         (desktop: V)<br />
         • <strong>Walking:</strong> Left Stick walk (click: sprint), Right Stick snap turn and
         Up/Down weapon, A / X jump, Trigger shoot, hold Grip or jump twice to fly (desktop: WASD,
-        Space jump, Shift sprint, V fly)
+        Space jump, Shift sprint, V fly)<br />
+        • <strong>Berserker:</strong> never flies. Left Stick run (click: sprint), A / X jump,
+        Trigger attack (far: dash at the enemy; close: combo, keep pressing), Right Stick snap turn
+        (desktop: WASD, Space jump, Shift sprint, F attack)
       </div>
       <div id="weapon-line">Weapon: Blaster</div>
       <div id="boss-line" style="display: none"></div>
