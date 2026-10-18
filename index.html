@@ -8,7 +8,7 @@
     <meta name="theme-color" content="#1fd9ff" />
     <link rel="icon" href="/quest-suit-vr/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/quest-suit-vr/icons/icon-192.png" />
-    <script type="module" crossorigin src="/quest-suit-vr/assets/index-CpzHhXW5.js"></script>
+    <script type="module" crossorigin src="/quest-suit-vr/assets/index-DzMbGOeH.js"></script>
     <link rel="stylesheet" crossorigin href="/quest-suit-vr/assets/index-FayDK0xC.css">
   </head>
   <body>
@@ -49,6 +49,13 @@
           <button id="btn-search">Go</button>
         </div>
         <div id="loading">Loading...</div>
+      </div>
+
+      <!-- Missions: one per boss, from src/missions (src/web/missionButtons.ts) -->
+      <div class="control-group">
+        <label>Missions</label>
+        <div id="mission-buttons" style="display: flex; gap: 5px"></div>
+        <div id="mission-line" style="display: none"></div>
       </div>
 
       <!-- Co-op rooms: one player hosts, the other joins with the 4-character code -->
