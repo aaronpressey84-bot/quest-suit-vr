@@ -1,0 +1,296 @@
+[
+ {
+  "id": "boss_wake_01",
+  "event": "boss_wake",
+  "text": "Oh! Hello there! Welcome to my crater. Would you mind terribly if I vaporized you?",
+  "file": "boss_wake_01.mp3",
+  "duration_s": 6.165
+ },
+ {
+  "id": "boss_wake_02",
+  "event": "boss_wake",
+  "text": "Goodness, a visitor! Please, make yourself comfortable. This won't take long.",
+  "file": "boss_wake_02.mp3",
+  "duration_s": 5.982
+ },
+ {
+  "id": "boss_wake_03",
+  "event": "boss_wake",
+  "text": "Ah, you must be the new target, partner. Lovely to meet you! Shall we begin?",
+  "file": "boss_wake_03.mp3",
+  "duration_s": 4.859
+ },
+ {
+  "id": "boss_wake_04",
+  "event": "boss_wake",
+  "text": "Pardon me, I was just resting my eyes. Right then. Time to blast you, if that's all right!",
+  "file": "boss_wake_04.mp3",
+  "duration_s": 5.878
+ },
+ {
+  "id": "boss_taunt_01",
+  "event": "boss_taunt",
+  "text": "Pardon me, would you mind holding still so I can vaporize you? Thank you so much!",
+  "file": "boss_taunt_01.mp3",
+  "duration_s": 6.452
+ },
+ {
+  "id": "boss_taunt_02",
+  "event": "boss_taunt",
+  "text": "You're doing wonderfully! Truly. It's a shame I have to flatten you.",
+  "file": "boss_taunt_02.mp3",
+  "duration_s": 4.075
+ },
+ {
+  "id": "boss_taunt_03",
+  "event": "boss_taunt",
+  "text": "Mind the dust, it gets everywhere. So will you, in a moment!",
+  "file": "boss_taunt_03.mp3",
+  "duration_s": 3.997
+ },
+ {
+  "id": "boss_taunt_04",
+  "event": "boss_taunt",
+  "text": "Oh, please don't run off. It's ever so rude, and I'm only trying to destroy you.",
+  "file": "boss_taunt_04.mp3",
+  "duration_s": 5.616
+ },
+ {
+  "id": "boss_taunt_05",
+  "event": "boss_taunt",
+  "text": "My mama always said, be kind to guests. Then blast 'em into orbit.",
+  "file": "boss_taunt_05.mp3",
+  "duration_s": 4.676
+ },
+ {
+  "id": "boss_taunt_06",
+  "event": "boss_taunt",
+  "text": "Would you care for a snack? Sunflower seeds? No? More rockets, then!",
+  "file": "boss_taunt_06.mp3",
+  "duration_s": 5.747
+ },
+ {
+  "id": "boss_taunt_07",
+  "event": "boss_taunt",
+  "text": "I do apologise for all the explosions. Actually, no, I don't. Sorry!",
+  "file": "boss_taunt_07.mp3",
+  "duration_s": 4.206
+ },
+ {
+  "id": "boss_taunt_08",
+  "event": "boss_taunt",
+  "text": "Such a lovely day on Mars for a polite little obliteration, don't you think?",
+  "file": "boss_taunt_08.mp3",
+  "duration_s": 5.564
+ },
+ {
+  "id": "boss_cannon_01",
+  "event": "boss_cannon",
+  "text": "Charging up! This might tingle. Quite a lot, actually!",
+  "file": "boss_cannon_01.mp3",
+  "duration_s": 3.657
+ },
+ {
+  "id": "boss_cannon_02",
+  "event": "boss_cannon",
+  "text": "One electric ball, coming right up! Do try to catch it with your face.",
+  "file": "boss_cannon_02.mp3",
+  "duration_s": 5.381
+ },
+ {
+  "id": "boss_cannon_03",
+  "event": "boss_cannon",
+  "text": "Zap delivery for you! Sign here, please. Oh, never mind, it's already there!",
+  "file": "boss_cannon_03.mp3",
+  "duration_s": 5.616
+ },
+ {
+  "id": "boss_cannon_04",
+  "event": "boss_cannon",
+  "text": "Hold still, I've charged it just for you!",
+  "file": "boss_cannon_04.mp3",
+  "duration_s": 3.056
+ },
+ {
+  "id": "boss_sling_bomb_01",
+  "event": "boss_sling_bomb",
+  "text": "Heads up! Well, heads down, really. It's a cluster bomb!",
+  "file": "boss_sling_bomb_01.mp3",
+  "duration_s": 3.944
+ },
+ {
+  "id": "boss_sling_bomb_02",
+  "event": "boss_sling_bomb",
+  "text": "A little present from my slingshot! Lots of little presents, actually!",
+  "file": "boss_sling_bomb_02.mp3",
+  "duration_s": 5.669
+ },
+ {
+  "id": "boss_sling_bomb_03",
+  "event": "boss_sling_bomb",
+  "text": "Ready, aim, fling! Y'all mind the bits!",
+  "file": "boss_sling_bomb_03.mp3",
+  "duration_s": 3.056
+ },
+ {
+  "id": "boss_sling_bomb_04",
+  "event": "boss_sling_bomb",
+  "text": "I've been practising my aim. Please be a good sport and stand right there.",
+  "file": "boss_sling_bomb_04.mp3",
+  "duration_s": 5.669
+ },
+ {
+  "id": "boss_sling_melee_01",
+  "event": "boss_sling_melee",
+  "text": "Excuse me, you're standing a bit close. Let me fix that! Whack!",
+  "file": "boss_sling_melee_01.mp3",
+  "duration_s": 5.016
+ },
+ {
+  "id": "boss_sling_melee_02",
+  "event": "boss_sling_melee",
+  "text": "Personal space, please! Thank you ever so much!",
+  "file": "boss_sling_melee_02.mp3",
+  "duration_s": 3.161
+ },
+ {
+  "id": "boss_sling_melee_03",
+  "event": "boss_sling_melee",
+  "text": "Oh dear, you've come too near the slingshot. That's on you!",
+  "file": "boss_sling_melee_03.mp3",
+  "duration_s": 3.944
+ },
+ {
+  "id": "boss_sling_melee_04",
+  "event": "boss_sling_melee",
+  "text": "Coming through! Mind your head, I'm swinging!",
+  "file": "boss_sling_melee_04.mp3",
+  "duration_s": 3.892
+ },
+ {
+  "id": "boss_hurt_01",
+  "event": "boss_hurt",
+  "text": "Ow! Well, that was uncalled for!",
+  "file": "boss_hurt_01.mp3",
+  "duration_s": 2.821
+ },
+ {
+  "id": "boss_hurt_02",
+  "event": "boss_hurt",
+  "text": "Oof! My whiskers! How very rude!",
+  "file": "boss_hurt_02.mp3",
+  "duration_s": 3.056
+ },
+ {
+  "id": "boss_hurt_03",
+  "event": "boss_hurt",
+  "text": "Ouch! I'll say, that one actually stung!",
+  "file": "boss_hurt_03.mp3",
+  "duration_s": 2.873
+ },
+ {
+  "id": "boss_hurt_04",
+  "event": "boss_hurt",
+  "text": "Hey! I just had these goggles polished!",
+  "file": "boss_hurt_04.mp3",
+  "duration_s": 2.873
+ },
+ {
+  "id": "boss_hurt_05",
+  "event": "boss_hurt",
+  "text": "Eep! Please stop that, it's terribly impolite!",
+  "file": "boss_hurt_05.mp3",
+  "duration_s": 3.527
+ },
+ {
+  "id": "boss_low_health_01",
+  "event": "boss_low_health",
+  "text": "Oh dear, oh dear. I may have underestimated you. Just slightly.",
+  "file": "boss_low_health_01.mp3",
+  "duration_s": 4.31
+ },
+ {
+  "id": "boss_low_health_02",
+  "event": "boss_low_health",
+  "text": "I'm not losing, I'm just... resting my thrusters. Very hard.",
+  "file": "boss_low_health_02.mp3",
+  "duration_s": 4.859
+ },
+ {
+  "id": "boss_low_health_03",
+  "event": "boss_low_health",
+  "text": "Right. Gloves off. Well, I don't wear gloves. But you know what I mean!",
+  "file": "boss_low_health_03.mp3",
+  "duration_s": 4.624
+ },
+ {
+  "id": "boss_phase2_01",
+  "event": "boss_phase2",
+  "text": "Right! That's quite enough of that. Double thrusters, if you please!",
+  "file": "boss_phase2_01.mp3",
+  "duration_s": 4.78
+ },
+ {
+  "id": "boss_phase2_02",
+  "event": "boss_phase2",
+  "text": "You've made me cross. And I am never cross! Full power!",
+  "file": "boss_phase2_02.mp3",
+  "duration_s": 4.31
+ },
+ {
+  "id": "boss_phase2_03",
+  "event": "boss_phase2",
+  "text": "I was being nice before. I'm still being nice. Just faster!",
+  "file": "boss_phase2_03.mp3",
+  "duration_s": 5.198
+ },
+ {
+  "id": "boss_defeat_01",
+  "event": "boss_defeat",
+  "text": "Oh! Oh my. Well played. Mighty well played indeed, partner...",
+  "file": "boss_defeat_01.mp3",
+  "duration_s": 4.859
+ },
+ {
+  "id": "boss_defeat_02",
+  "event": "boss_defeat",
+  "text": "I suppose I'll just... sit down here for a bit. Good game!",
+  "file": "boss_defeat_02.mp3",
+  "duration_s": 4.206
+ },
+ {
+  "id": "boss_defeat_03",
+  "event": "boss_defeat",
+  "text": "You win! Do take my weapons. I insist. Mind the sharp bits!",
+  "file": "boss_defeat_03.mp3",
+  "duration_s": 4.362
+ },
+ {
+  "id": "player_down_01",
+  "event": "player_down",
+  "text": "Oh no, did I break you? Sorry! Not sorry. Come back any time!",
+  "file": "player_down_01.mp3",
+  "duration_s": 5.46
+ },
+ {
+  "id": "player_down_02",
+  "event": "player_down",
+  "text": "Thank you so much for visiting! Do come again so I can do that again!",
+  "file": "player_down_02.mp3",
+  "duration_s": 4.598
+ },
+ {
+  "id": "player_down_03",
+  "event": "player_down",
+  "text": "There we are! All tidied up. Lovely!",
+  "file": "player_down_03.mp3",
+  "duration_s": 2.351
+ },
+ {
+  "id": "player_down_04",
+  "event": "player_down",
+  "text": "Oh, bad luck! Better luck next time. There won't be one, but still!",
+  "file": "player_down_04.mp3",
+  "duration_s": 4.258
+ }
+]
