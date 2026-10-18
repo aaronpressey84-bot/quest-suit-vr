@@ -1,0 +1,212 @@
+[
+ {
+  "id": "select_01",
+  "event": "select",
+  "text": "Bone Lord Bob, reporting for... supervision.",
+  "file": "select_01.mp3",
+  "duration_s": 4.336
+ },
+ {
+  "id": "select_02",
+  "event": "select",
+  "text": "Alright, boys. Single file. Nobody lose a femur.",
+  "file": "select_02.mp3",
+  "duration_s": 3.892
+ },
+ {
+  "id": "mission_start_01",
+  "event": "mission_start",
+  "text": "We do this calmly. Calmly.",
+  "file": "mission_start_01.mp3",
+  "duration_s": 3.213
+ },
+ {
+  "id": "minion_spawn_01",
+  "event": "minion_spawn",
+  "text": "Up you get. Shoulders back.",
+  "file": "minion_spawn_01.mp3",
+  "duration_s": 2.717
+ },
+ {
+  "id": "minion_spawn_02",
+  "event": "minion_spawn",
+  "text": "Another one. Welcome to the family.",
+  "file": "minion_spawn_02.mp3",
+  "duration_s": 2.847
+ },
+ {
+  "id": "minion_cap_01",
+  "event": "minion_cap",
+  "text": "That's everybody. Head count, please.",
+  "file": "minion_cap_01.mp3",
+  "duration_s": 2.769
+ },
+ {
+  "id": "heal_minion_01",
+  "event": "heal_minion",
+  "text": "Drink your milk.",
+  "file": "heal_minion_01.mp3",
+  "duration_s": 1.332
+ },
+ {
+  "id": "heal_minion_02",
+  "event": "heal_minion",
+  "text": "Milk. For strong bones.",
+  "file": "heal_minion_02.mp3",
+  "duration_s": 2.377
+ },
+ {
+  "id": "heal_minion_03",
+  "event": "heal_minion",
+  "text": "Here. Don't spill it.",
+  "file": "heal_minion_03.mp3",
+  "duration_s": 1.437
+ },
+ {
+  "id": "heal_player_01",
+  "event": "heal_player",
+  "text": "Have some milk. You look peaky.",
+  "file": "heal_player_01.mp3",
+  "duration_s": 2.168
+ },
+ {
+  "id": "aoe_heal_01",
+  "event": "aoe_heal",
+  "text": "MILK FOR EVERYONE!",
+  "file": "aoe_heal_01.mp3",
+  "duration_s": 1.724
+ },
+ {
+  "id": "lecture_01",
+  "event": "lecture",
+  "text": "I'm not angry. I'm disappointed. Now go hit him.",
+  "file": "lecture_01.mp3",
+  "duration_s": 4.545
+ },
+ {
+  "id": "lecture_02",
+  "event": "lecture",
+  "text": "When I was your age I had MUSCLES. Go on, then.",
+  "file": "lecture_02.mp3",
+  "duration_s": 4.598
+ },
+ {
+  "id": "lecture_03",
+  "event": "lecture",
+  "text": "Elbows in. Swing from the hips. Like I taught you.",
+  "file": "lecture_03.mp3",
+  "duration_s": 3.944
+ },
+ {
+  "id": "portal_01",
+  "event": "portal",
+  "text": "Shortcut.",
+  "file": "portal_01.mp3",
+  "duration_s": 0.784
+ },
+ {
+  "id": "portal_02",
+  "event": "portal",
+  "text": "Mind the gap.",
+  "file": "portal_02.mp3",
+  "duration_s": 1.097
+ },
+ {
+  "id": "minion_lost_01",
+  "event": "minion_lost",
+  "text": "Oh, there goes Kevin.",
+  "file": "minion_lost_01.mp3",
+  "duration_s": 1.985
+ },
+ {
+  "id": "minion_lost_02",
+  "event": "minion_lost",
+  "text": "I'll put him back together later.",
+  "file": "minion_lost_02.mp3",
+  "duration_s": 1.881
+ },
+ {
+  "id": "enemy_down_01",
+  "event": "enemy_down",
+  "text": "Good work, lads.",
+  "file": "enemy_down_01.mp3",
+  "duration_s": 1.437
+ },
+ {
+  "id": "coins_pickup_01",
+  "event": "coins_pickup",
+  "text": "That's going in the milk fund.",
+  "file": "coins_pickup_01.mp3",
+  "duration_s": 1.933
+ },
+ {
+  "id": "upgrade_bought_01",
+  "event": "upgrade_bought",
+  "text": "Bigger bones. Better bones.",
+  "file": "upgrade_bought_01.mp3",
+  "duration_s": 2.769
+ },
+ {
+  "id": "cant_afford_01",
+  "event": "cant_afford",
+  "text": "We can't afford that. Put it back.",
+  "file": "cant_afford_01.mp3",
+  "duration_s": 2.664
+ },
+ {
+  "id": "low_health_01",
+  "event": "low_health",
+  "text": "I'm getting too old for this.",
+  "file": "low_health_01.mp3",
+  "duration_s": 2.325
+ },
+ {
+  "id": "collapse_01",
+  "event": "collapse",
+  "text": "Oh, bother.",
+  "file": "collapse_01.mp3",
+  "duration_s": 1.045
+ },
+ {
+  "id": "collapse_02",
+  "event": "collapse",
+  "text": "I'm... falling... apart...",
+  "file": "collapse_02.mp3",
+  "duration_s": 2.821
+ },
+ {
+  "id": "reform_01",
+  "event": "reform",
+  "text": "And we're back. Where was I?",
+  "file": "reform_01.mp3",
+  "duration_s": 2.377
+ },
+ {
+  "id": "reform_02",
+  "event": "reform",
+  "text": "Nobody saw that.",
+  "file": "reform_02.mp3",
+  "duration_s": 1.437
+ },
+ {
+  "id": "boss_wake_01",
+  "event": "boss_wake",
+  "text": "Everyone stay behind me. Actually, in front of me.",
+  "file": "boss_wake_01.mp3",
+  "duration_s": 3.736
+ },
+ {
+  "id": "boss_defeated_01",
+  "event": "boss_defeated",
+  "text": "Well done, boys. Milk all round.",
+  "file": "boss_defeated_01.mp3",
+  "duration_s": 2.952
+ },
+ {
+  "id": "idle_01",
+  "event": "idle",
+  "text": "Sit up straight, Gerald.",
+  "file": "idle_01.mp3",
+  "duration_s": 1.776
+ }
+]

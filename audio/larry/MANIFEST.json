@@ -1,0 +1,114 @@
+[
+ {
+  "id": "mission_start_01",
+  "event": "mission_start",
+  "text": "Mmm. Something small fell into my ocean.",
+  "file": "mission_start_01.mp3",
+  "duration_s": 3.553
+ },
+ {
+  "id": "mission_start_02",
+  "event": "mission_start",
+  "text": "Swim around a bit. I'm in no hurry. I'm never in a hurry.",
+  "file": "mission_start_02.mp3",
+  "duration_s": 5.564
+ },
+ {
+  "id": "lurking_01",
+  "event": "lurking",
+  "text": "I can hear your little heartbeat.",
+  "file": "lurking_01.mp3",
+  "duration_s": 2.926
+ },
+ {
+  "id": "lurking_02",
+  "event": "lurking",
+  "text": "Closer... closer...",
+  "file": "lurking_02.mp3",
+  "duration_s": 3.474
+ },
+ {
+  "id": "ambush_01",
+  "event": "ambush",
+  "text": "SURPRISE.",
+  "file": "ambush_01.mp3",
+  "duration_s": 1.411
+ },
+ {
+  "id": "ambush_02",
+  "event": "ambush",
+  "text": "Found you.",
+  "file": "ambush_02.mp3",
+  "duration_s": 1.149
+ },
+ {
+  "id": "boss_wake_01",
+  "event": "boss_wake",
+  "text": "Eighty million years I've waited for a snack like you.",
+  "file": "boss_wake_01.mp3",
+  "duration_s": 4.441
+ },
+ {
+  "id": "ancient_infection_01",
+  "event": "ancient_infection",
+  "text": "Breathe deep. It's an old recipe.",
+  "file": "ancient_infection_01.mp3",
+  "duration_s": 3.239
+ },
+ {
+  "id": "electric_storm_01",
+  "event": "electric_storm",
+  "text": "Little sparks. Big ouch.",
+  "file": "electric_storm_01.mp3",
+  "duration_s": 3.709
+ },
+ {
+  "id": "miss_01",
+  "event": "miss",
+  "text": "Slippery. I like slippery.",
+  "file": "miss_01.mp3",
+  "duration_s": 4.911
+ },
+ {
+  "id": "player_down_01",
+  "event": "player_down",
+  "text": "Lunch.",
+  "file": "player_down_01.mp3",
+  "duration_s": 0.993
+ },
+ {
+  "id": "phase2_01",
+  "event": "phase2",
+  "text": "Enough games. I'm hungry NOW.",
+  "file": "phase2_01.mp3",
+  "duration_s": 3.396
+ },
+ {
+  "id": "low_health_01",
+  "event": "low_health",
+  "text": "I'm too old for this... and too angry to stop.",
+  "file": "low_health_01.mp3",
+  "duration_s": 4.519
+ },
+ {
+  "id": "boss_defeated_01",
+  "event": "boss_defeated",
+  "text": "Back to the deep... for another eighty million years...",
+  "file": "boss_defeated_01.mp3",
+  "duration_s": 4.911
+ },
+ {
+  "id": "boss_defeated_02",
+  "event": "boss_defeated",
+  "text": "Wake me... when you're bigger.",
+  "file": "boss_defeated_02.mp3",
+  "duration_s": 3.161
+ },
+ {
+  "id": "idle_01",
+  "event": "idle",
+  "text": "Yawn. Still hungry.",
+  "file": "idle_01.mp3",
+  "duration_s": 2.508
+ }
+]

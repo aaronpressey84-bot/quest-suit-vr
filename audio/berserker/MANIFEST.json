@@ -1,0 +1,198 @@
+[
+ {
+  "id": "select_01",
+  "event": "select",
+  "text": "BERSERKER! Point me at something big.",
+  "file": "select_01.mp3",
+  "duration_s": 3.004
+ },
+ {
+  "id": "select_02",
+  "event": "select",
+  "text": "Axe is sharp. Boots are laced. Let's go.",
+  "file": "select_02.mp3",
+  "duration_s": 3.866
+ },
+ {
+  "id": "mission_start_01",
+  "event": "mission_start",
+  "text": "No plan. Just axe.",
+  "file": "mission_start_01.mp3",
+  "duration_s": 2.273
+ },
+ {
+  "id": "mission_start_02",
+  "event": "mission_start",
+  "text": "I'll knock. With my axe.",
+  "file": "mission_start_02.mp3",
+  "duration_s": 2.586
+ },
+ {
+  "id": "enemy_spotted_01",
+  "event": "enemy_spotted",
+  "text": "There you are!",
+  "file": "enemy_spotted_01.mp3",
+  "duration_s": 1.411
+ },
+ {
+  "id": "enemy_spotted_02",
+  "event": "enemy_spotted",
+  "text": "Fresh meat for the axe!",
+  "file": "enemy_spotted_02.mp3",
+  "duration_s": 2.508
+ },
+ {
+  "id": "enemy_down_01",
+  "event": "enemy_down",
+  "text": "Down you go!",
+  "file": "enemy_down_01.mp3",
+  "duration_s": 1.959
+ },
+ {
+  "id": "enemy_down_02",
+  "event": "enemy_down",
+  "text": "Next!",
+  "file": "enemy_down_02.mp3",
+  "duration_s": 1.881
+ },
+ {
+  "id": "enemy_down_03",
+  "event": "enemy_down",
+  "text": "That's how it's done!",
+  "file": "enemy_down_03.mp3",
+  "duration_s": 1.724
+ },
+ {
+  "id": "multi_kill_01",
+  "event": "multi_kill",
+  "text": "Who's next? WHO'S NEXT?!",
+  "file": "multi_kill_01.mp3",
+  "duration_s": 2.586
+ },
+ {
+  "id": "combo_finisher_01",
+  "event": "combo_finisher",
+  "text": "AND... STAY... DOWN!",
+  "file": "combo_finisher_01.mp3",
+  "duration_s": 2.429
+ },
+ {
+  "id": "dash_01",
+  "event": "dash",
+  "text": "Coming through!",
+  "file": "dash_01.mp3",
+  "duration_s": 2.116
+ },
+ {
+  "id": "breakable_smash_01",
+  "event": "breakable_smash",
+  "text": "I like breaking things.",
+  "file": "breakable_smash_01.mp3",
+  "duration_s": 2.038
+ },
+ {
+  "id": "relay_destroyed_01",
+  "event": "relay_destroyed",
+  "text": "Relay smashed. Two to go, or whatever.",
+  "file": "relay_destroyed_01.mp3",
+  "duration_s": 3.631
+ },
+ {
+  "id": "coins_pickup_01",
+  "event": "coins_pickup",
+  "text": "Shiny!",
+  "file": "coins_pickup_01.mp3",
+  "duration_s": 1.411
+ },
+ {
+  "id": "coins_pickup_02",
+  "event": "coins_pickup",
+  "text": "Mine now.",
+  "file": "coins_pickup_02.mp3",
+  "duration_s": 1.411
+ },
+ {
+  "id": "upgrade_bought_01",
+  "event": "upgrade_bought",
+  "text": "Bigger axe energy!",
+  "file": "upgrade_bought_01.mp3",
+  "duration_s": 2.351
+ },
+ {
+  "id": "cant_afford_01",
+  "event": "cant_afford",
+  "text": "My axe is cheaper than this.",
+  "file": "cant_afford_01.mp3",
+  "duration_s": 2.194
+ },
+ {
+  "id": "low_health_01",
+  "event": "low_health",
+  "text": "Just a scratch! A big scratch.",
+  "file": "low_health_01.mp3",
+  "duration_s": 3.082
+ },
+ {
+  "id": "critical_health_01",
+  "event": "critical_health",
+  "text": "I need a minute. Not a long one!",
+  "file": "critical_health_01.mp3",
+  "duration_s": 2.926
+ },
+ {
+  "id": "heal_01",
+  "event": "heal",
+  "text": "Ahh. Back in the fight.",
+  "file": "heal_01.mp3",
+  "duration_s": 2.116
+ },
+ {
+  "id": "death_respawn_01",
+  "event": "death_respawn",
+  "text": "That was a warm-up.",
+  "file": "death_respawn_01.mp3",
+  "duration_s": 1.489
+ },
+ {
+  "id": "boss_wake_01",
+  "event": "boss_wake",
+  "text": "Finally. Something my size.",
+  "file": "boss_wake_01.mp3",
+  "duration_s": 2.847
+ },
+ {
+  "id": "boss_low_01",
+  "event": "boss_low",
+  "text": "You're wobbling! Hit him again!",
+  "file": "boss_low_01.mp3",
+  "duration_s": 2.586
+ },
+ {
+  "id": "boss_defeated_01",
+  "event": "boss_defeated",
+  "text": "BERSERKER WINS!",
+  "file": "boss_defeated_01.mp3",
+  "duration_s": 2.116
+ },
+ {
+  "id": "grounded_boss_01",
+  "event": "grounded_boss",
+  "text": "Can't fly? Good. Neither can you now.",
+  "file": "grounded_boss_01.mp3",
+  "duration_s": 3.082
+ },
+ {
+  "id": "idle_01",
+  "event": "idle",
+  "text": "Is it fight time yet?",
+  "file": "idle_01.mp3",
+  "duration_s": 1.567
+ },
+ {
+  "id": "idle_02",
+  "event": "idle",
+  "text": "I've been holding this axe a long time.",
+  "file": "idle_02.mp3",
+  "duration_s": 2.926
+ }
+]

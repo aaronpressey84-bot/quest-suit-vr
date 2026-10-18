@@ -1,0 +1,163 @@
+[
+ {
+  "id": "mission_start_01",
+  "event": "mission_start",
+  "text": "Come in, come in. Make yourself at home. FOREVER.",
+  "file": "mission_start_01.mp3",
+  "duration_s": 5.721
+ },
+ {
+  "id": "mission_start_02",
+  "event": "mission_start",
+  "text": "Wipe your feet, snack.",
+  "file": "mission_start_02.mp3",
+  "duration_s": 1.724
+ },
+ {
+  "id": "objective_progress_01",
+  "event": "objective_progress",
+  "text": "Stop poking my insides!",
+  "file": "objective_progress_01.mp3",
+  "duration_s": 2.429
+ },
+ {
+  "id": "objective_progress_02",
+  "event": "objective_progress",
+  "text": "That was a load-bearing wall!",
+  "file": "objective_progress_02.mp3",
+  "duration_s": 2.769
+ },
+ {
+  "id": "objective_complete_01",
+  "event": "objective_complete",
+  "text": "Fine. GET OUT. So I can chase you.",
+  "file": "objective_complete_01.mp3",
+  "duration_s": 4.049
+ },
+ {
+  "id": "escape_01",
+  "event": "escape",
+  "text": "Leaving so soon? Rude.",
+  "file": "escape_01.mp3",
+  "duration_s": 2.847
+ },
+ {
+  "id": "boss_wake_01",
+  "event": "boss_wake",
+  "text": "You've been in my kitchen. Now you're ON THE MENU.",
+  "file": "boss_wake_01.mp3",
+  "duration_s": 5.329
+ },
+ {
+  "id": "assault_plunger_01",
+  "event": "assault_plunger",
+  "text": "Unclog THIS!",
+  "file": "assault_plunger_01.mp3",
+  "duration_s": 2.116
+ },
+ {
+  "id": "hose_01",
+  "event": "hose",
+  "text": "Shower time!",
+  "file": "hose_01.mp3",
+  "duration_s": 1.567
+ },
+ {
+  "id": "hose_grounds_flyer_01",
+  "event": "hose_grounds_flyer",
+  "text": "Down you come, birdie.",
+  "file": "hose_grounds_flyer_01.mp3",
+  "duration_s": 2.194
+ },
+ {
+  "id": "flamethrower_01",
+  "event": "flamethrower",
+  "text": "Who wants it extra crispy?",
+  "file": "flamethrower_01.mp3",
+  "duration_s": 3.239
+ },
+ {
+  "id": "mailbox_missiles_01",
+  "event": "mailbox_missiles",
+  "text": "You've got mail!",
+  "file": "mailbox_missiles_01.mp3",
+  "duration_s": 1.228
+ },
+ {
+  "id": "mailbox_reflect_01",
+  "event": "mailbox_reflect",
+  "text": "Return to sender!",
+  "file": "mailbox_reflect_01.mp3",
+  "duration_s": 1.881
+ },
+ {
+  "id": "plug_whip_01",
+  "event": "plug_whip",
+  "text": "Sit DOWN.",
+  "file": "plug_whip_01.mp3",
+  "duration_s": 2.038
+ },
+ {
+  "id": "plug_whip_stun_01",
+  "event": "plug_whip_stun",
+  "text": "Lights out!",
+  "file": "plug_whip_stun_01.mp3",
+  "duration_s": 1.724
+ },
+ {
+  "id": "phase2_01",
+  "event": "phase2",
+  "text": "Now I'm ANGRY. Shutters UP!",
+  "file": "phase2_01.mp3",
+  "duration_s": 3.239
+ },
+ {
+  "id": "house_always_wins_01",
+  "event": "house_always_wins",
+  "text": "THE HOUSE... ALWAYS... WINS!",
+  "file": "house_always_wins_01.mp3",
+  "duration_s": 4.206
+ },
+ {
+  "id": "crush_01",
+  "event": "crush",
+  "text": "Squish time!",
+  "file": "crush_01.mp3",
+  "duration_s": 1.724
+ },
+ {
+  "id": "crush_miss_01",
+  "event": "crush_miss",
+  "text": "Hold STILL!",
+  "file": "crush_miss_01.mp3",
+  "duration_s": 1.489
+ },
+ {
+  "id": "player_down_01",
+  "event": "player_down",
+  "text": "Mmm. Snack.",
+  "file": "player_down_01.mp3",
+  "duration_s": 2.194
+ },
+ {
+  "id": "low_health_01",
+  "event": "low_health",
+  "text": "My foundation is cracking!",
+  "file": "low_health_01.mp3",
+  "duration_s": 2.847
+ },
+ {
+  "id": "boss_defeated_01",
+  "event": "boss_defeated",
+  "text": "Nooo... my curb appeal...",
+  "file": "boss_defeated_01.mp3",
+  "duration_s": 3.318
+ },
+ {
+  "id": "boss_defeated_02",
+  "event": "boss_defeated",
+  "text": "I'm... condemned...",
+  "file": "boss_defeated_02.mp3",
+  "duration_s": 3.318
+ }
+]

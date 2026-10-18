@@ -1,0 +1,198 @@
+[
+ {
+  "id": "select_01",
+  "event": "select",
+  "text": "Yes.",
+  "file": "select_01.mp3",
+  "duration_s": 0.679
+ },
+ {
+  "id": "select_02",
+  "event": "select",
+  "text": "Frank The Greater. You're welcome.",
+  "file": "select_02.mp3",
+  "duration_s": 2.429
+ },
+ {
+  "id": "mission_start_01",
+  "event": "mission_start",
+  "text": "I don't do missions. Missions do me.",
+  "file": "mission_start_01.mp3",
+  "duration_s": 3.553
+ },
+ {
+  "id": "mission_start_02",
+  "event": "mission_start",
+  "text": "Relax. Frank is here.",
+  "file": "mission_start_02.mp3",
+  "duration_s": 2.194
+ },
+ {
+  "id": "takeoff_01",
+  "event": "takeoff",
+  "text": "Up, up, and a-wiener.",
+  "file": "takeoff_01.mp3",
+  "duration_s": 1.724
+ },
+ {
+  "id": "enemy_spotted_01",
+  "event": "enemy_spotted",
+  "text": "Oh, you thought.",
+  "file": "enemy_spotted_01.mp3",
+  "duration_s": 1.646
+ },
+ {
+  "id": "enemy_down_01",
+  "event": "enemy_down",
+  "text": "Average.",
+  "file": "enemy_down_01.mp3",
+  "duration_s": 0.914
+ },
+ {
+  "id": "enemy_down_02",
+  "event": "enemy_down",
+  "text": "As expected.",
+  "file": "enemy_down_02.mp3",
+  "duration_s": 1.306
+ },
+ {
+  "id": "enemy_down_03",
+  "event": "enemy_down",
+  "text": "Grilled.",
+  "file": "enemy_down_03.mp3",
+  "duration_s": 0.914
+ },
+ {
+  "id": "multi_kill_01",
+  "event": "multi_kill",
+  "text": "Is that all of them? Disappointing.",
+  "file": "multi_kill_01.mp3",
+  "duration_s": 2.691
+ },
+ {
+  "id": "eye_lasers_01",
+  "event": "eye_lasers",
+  "text": "Behold. Hot dogs.",
+  "file": "eye_lasers_01.mp3",
+  "duration_s": 2.038
+ },
+ {
+  "id": "eye_lasers_02",
+  "event": "eye_lasers",
+  "text": "Laser time.",
+  "file": "eye_lasers_02.mp3",
+  "duration_s": 1.228
+ },
+ {
+  "id": "mustard_grenade_01",
+  "event": "mustard_grenade",
+  "text": "Mustard. The bold choice.",
+  "file": "mustard_grenade_01.mp3",
+  "duration_s": 2.116
+ },
+ {
+  "id": "ketchup_grenade_01",
+  "event": "ketchup_grenade",
+  "text": "Ketchup. A classic.",
+  "file": "ketchup_grenade_01.mp3",
+  "duration_s": 1.881
+ },
+ {
+  "id": "combo_finisher_01",
+  "event": "combo_finisher",
+  "text": "With relish!",
+  "file": "combo_finisher_01.mp3",
+  "duration_s": 1.646
+ },
+ {
+  "id": "breakable_smash_01",
+  "event": "breakable_smash",
+  "text": "Oops. Strong.",
+  "file": "breakable_smash_01.mp3",
+  "duration_s": 1.802
+ },
+ {
+  "id": "coins_pickup_01",
+  "event": "coins_pickup",
+  "text": "Money finds Frank.",
+  "file": "coins_pickup_01.mp3",
+  "duration_s": 1.802
+ },
+ {
+  "id": "upgrade_bought_01",
+  "event": "upgrade_bought",
+  "text": "Even greater. Somehow.",
+  "file": "upgrade_bought_01.mp3",
+  "duration_s": 2.116
+ },
+ {
+  "id": "cant_afford_01",
+  "event": "cant_afford",
+  "text": "Frank does not haggle. Frank waits.",
+  "file": "cant_afford_01.mp3",
+  "duration_s": 2.691
+ },
+ {
+  "id": "low_health_01",
+  "event": "low_health",
+  "text": "A minor setback. For a lesser man.",
+  "file": "low_health_01.mp3",
+  "duration_s": 2.691
+ },
+ {
+  "id": "critical_health_01",
+  "event": "critical_health",
+  "text": "Frank is... slightly concerned.",
+  "file": "critical_health_01.mp3",
+  "duration_s": 2.351
+ },
+ {
+  "id": "heal_01",
+  "event": "heal",
+  "text": "Fully toasted again.",
+  "file": "heal_01.mp3",
+  "duration_s": 1.802
+ },
+ {
+  "id": "death_respawn_01",
+  "event": "death_respawn",
+  "text": "I meant to do that.",
+  "file": "death_respawn_01.mp3",
+  "duration_s": 1.567
+ },
+ {
+  "id": "grounded_01",
+  "event": "grounded",
+  "text": "Walking? How quaint.",
+  "file": "grounded_01.mp3",
+  "duration_s": 2.116
+ },
+ {
+  "id": "boss_wake_01",
+  "event": "boss_wake",
+  "text": "Finally. A worthy opponent. Probably not.",
+  "file": "boss_wake_01.mp3",
+  "duration_s": 3.631
+ },
+ {
+  "id": "boss_defeated_01",
+  "event": "boss_defeated",
+  "text": "Another day. Another win. Another hot dog.",
+  "file": "boss_defeated_01.mp3",
+  "duration_s": 4.049
+ },
+ {
+  "id": "idle_01",
+  "event": "idle",
+  "text": "I don't sweat. I sizzle.",
+  "file": "idle_01.mp3",
+  "duration_s": 2.847
+ },
+ {
+  "id": "idle_02",
+  "event": "idle",
+  "text": "Yes.",
+  "file": "idle_02.mp3",
+  "duration_s": 0.993
+ }
+]
