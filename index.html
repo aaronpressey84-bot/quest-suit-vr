@@ -8,8 +8,8 @@
     <meta name="theme-color" content="#1fd9ff" />
     <link rel="icon" href="/quest-suit-vr/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/quest-suit-vr/icons/icon-192.png" />
-    <script type="module" crossorigin src="/quest-suit-vr/assets/index-Dkhn1j25.js"></script>
-    <link rel="stylesheet" crossorigin href="/quest-suit-vr/assets/index-FayDK0xC.css">
+    <script type="module" crossorigin src="/quest-suit-vr/assets/index-Cq6AYKBY.js"></script>
+    <link rel="stylesheet" crossorigin href="/quest-suit-vr/assets/index-CK-juAaN.css">
   </head>
   <body>
     <div id="ui-container">
@@ -22,10 +22,22 @@
         <div id="character-buttons" style="display: flex; gap: 5px"></div>
       </div>
 
-      <!-- Location Controls -->
+      <!-- Areas: one run each (its mission, then its boss), from src/missions (src/web/areaButtons.ts) -->
       <div class="control-group">
-        <label>Locations</label>
+        <label>Areas (mission, then boss)</label>
+        <div id="area-buttons" style="display: flex; flex-wrap: wrap; gap: 5px"></div>
+        <div style="display: flex; gap: 5px">
+          <button id="btn-run-restart" style="flex: 1; display: none">Restart run</button>
+          <button id="btn-run-leave" style="flex: 1; display: none">Leave run</button>
+        </div>
+        <div id="mission-line" style="display: none"></div>
+      </div>
+
+      <!-- Free roam: no boss -->
+      <div class="control-group">
+        <label>Free roam</label>
         <div style="display: flex; flex-wrap: wrap; gap: 5px">
+          <button id="btn-training" style="flex: 1">Training</button>
           <button id="btn-austin" style="flex: 1; border-left: 3px solid #2196f3">
             Austin, TX
           </button>
@@ -34,31 +46,12 @@
           <button id="btn-mars" style="flex: 1; border: 1px solid #ff4400; color: #ffaa88">
             Mars
           </button>
-          <button id="btn-swamp" style="flex: 1; border: 1px solid #6f9a4a; color: #b8e08a">
-            Swamp
-          </button>
-          <button id="btn-barn" style="flex: 1; border: 1px solid #d8262a; color: #ffb08a">
-            Barn
-          </button>
-          <button id="btn-crater" style="flex: 1; border: 1px solid #c8673a; color: #ffc9a0">
-            Mars Crater
-          </button>
-          <button id="btn-street" style="flex: 1; border: 1px solid #5f7d2a; color: #d8e8b0">
-            Carl's Street
-          </button>
         </div>
         <div style="display: flex; gap: 5px">
           <input type="text" id="city-input" placeholder="Or search city..." style="flex-grow: 1" />
           <button id="btn-search">Go</button>
         </div>
         <div id="loading">Loading...</div>
-      </div>
-
-      <!-- Missions: one per boss, from src/missions (src/web/missionButtons.ts) -->
-      <div class="control-group">
-        <label>Missions</label>
-        <div id="mission-buttons" style="display: flex; gap: 5px"></div>
-        <div id="mission-line" style="display: none"></div>
       </div>
 
       <!-- Co-op rooms: one player hosts, the other joins with the 4-character code -->
@@ -100,6 +93,11 @@
       <p style="margin-top: 20px; color: #ff0; font-size: 18px">
         Press ANY Trigger in VR to Restart
       </p>
+    </div>
+
+    <div id="run-results" class="hidden">
+      <h2 id="run-results-title"></h2>
+      <div id="run-results-lines"></div>
     </div>
 
     <div id="error-log"></div>
