@@ -1,0 +1,121 @@
+[
+ {
+  "id": "mission_start_01",
+  "event": "mission_start",
+  "text": "Screen time is OVER!",
+  "file": "mission_start_01.mp3",
+  "duration_s": 2.508
+ },
+ {
+  "id": "mission_start_02",
+  "event": "mission_start",
+  "text": "Child, your math grade is too low.",
+  "file": "mission_start_02.mp3",
+  "duration_s": 2.508
+ },
+ {
+  "id": "idle_01",
+  "event": "idle",
+  "text": "Boy! Fill my water bottle!",
+  "file": "idle_01.mp3",
+  "duration_s": 2.429
+ },
+ {
+  "id": "idle_02",
+  "event": "idle",
+  "text": "Boy! Do the dishes!",
+  "file": "idle_02.mp3",
+  "duration_s": 1.959
+ },
+ {
+  "id": "idle_03",
+  "event": "idle",
+  "text": "Who left the lights on?! I AM electricity and I STILL pay for it!",
+  "file": "idle_03.mp3",
+  "duration_s": 7.549
+ },
+ {
+  "id": "boss_wake_01",
+  "event": "boss_wake",
+  "text": "Hi Hungry, I'm Dad Bot!",
+  "file": "boss_wake_01.mp3",
+  "duration_s": 2.586
+ },
+ {
+  "id": "missile_buffet_01",
+  "event": "missile_buffet",
+  "text": "I love you!! The missiles are filled with love!! LOVE MISSILES!!",
+  "file": "missile_buffet_01.mp3",
+  "duration_s": 7.236
+ },
+ {
+  "id": "chain_gun_01",
+  "event": "chain_gun",
+  "text": "Don't make me turn this boss fight around!",
+  "file": "chain_gun_01.mp3",
+  "duration_s": 3.318
+ },
+ {
+  "id": "wrench_01",
+  "event": "wrench",
+  "text": "This is gonna hurt me more than it hurts you. ...Nope. Just you.",
+  "file": "wrench_01.mp3",
+  "duration_s": 6.922
+ },
+ {
+  "id": "best_dad_award_01",
+  "event": "best_dad_award",
+  "text": "Shoes OFF in the house!",
+  "file": "best_dad_award_01.mp3",
+  "duration_s": 2.273
+ },
+ {
+  "id": "miss_01",
+  "event": "miss",
+  "text": "Back in my day we fought giant robots uphill both ways!",
+  "file": "miss_01.mp3",
+  "duration_s": 5.486
+ },
+ {
+  "id": "player_down_01",
+  "event": "player_down",
+  "text": "Welp! That's it for you!",
+  "file": "player_down_01.mp3",
+  "duration_s": 2.691
+ },
+ {
+  "id": "player_down_02",
+  "event": "player_down",
+  "text": "No child left behind? No child's behind goes un-spanked more like!",
+  "file": "player_down_02.mp3",
+  "duration_s": 6.687
+ },
+ {
+  "id": "phase2_01",
+  "event": "phase2",
+  "text": "Is that your room or a war zone?! ...Oh wait, it's MY war zone.",
+  "file": "phase2_01.mp3",
+  "duration_s": 7.079
+ },
+ {
+  "id": "phase2_02",
+  "event": "phase2",
+  "text": "Boy! The beatings will continue until your attitude improves!",
+  "file": "phase2_02.mp3",
+  "duration_s": 4.598
+ },
+ {
+  "id": "low_health_01",
+  "event": "low_health",
+  "text": "I'm not mad. I'm just disappointed. ...Also mad.",
+  "file": "low_health_01.mp3",
+  "duration_s": 6.609
+ },
+ {
+  "id": "boss_defeated_01",
+  "event": "boss_defeated",
+  "text": "Go... ask your mother...",
+  "file": "boss_defeated_01.mp3",
+  "duration_s": 3.788
+ }
+]
