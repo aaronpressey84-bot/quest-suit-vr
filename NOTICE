@@ -49,6 +49,15 @@ Bundled third-party components:
 - meshoptimizer decoder (shipped with three.js as
   examples/jsm/libs/meshopt_decoder.module.js), https://github.com/zeux/meshoptimizer -
   MIT License, Copyright (c) 2016-2024 Arseny Kapoulkine.
+- Lilita One (fonts/lilita-one-latin-400-normal.woff2), the menus' display face -
+  SIL Open Font License 1.1, Copyright (c) 2011 Juan Montoreano, with Reserved Font
+  Name "Lilita One". Full text in fonts/OFL-LilitaOne.txt.
+- Nunito ExtraBold and Black (fonts/nunito-latin-800-normal.woff2,
+  fonts/nunito-latin-900-normal.woff2), the menus' body face - SIL Open Font
+  License 1.1, Copyright 2014 The Nunito Project Authors
+  (https://github.com/googlefonts/nunito). Full text in fonts/OFL-Nunito.txt.
+  Both are the Latin subsets as packaged by Fontsource (@fontsource/lilita-one and
+  @fontsource/nunito 5.3.0), unmodified.
 
 Original to this project: the 3D models in models/ (designed for Big Back and
 generated with Rodin; ids in the source repository's assets-src/models/SOURCES.tsv)

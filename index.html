@@ -3,52 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SuperSonic (World Explorer)</title>
+    <title>Big Back</title>
     <link rel="manifest" href="/quest-suit-vr/manifest.webmanifest" />
     <meta name="theme-color" content="#1fd9ff" />
     <link rel="icon" href="/quest-suit-vr/icons/icon-192.png" />
     <link rel="apple-touch-icon" href="/quest-suit-vr/icons/icon-192.png" />
-    <script type="module" crossorigin src="/quest-suit-vr/assets/index-DJntHtBf.js"></script>
-    <link rel="stylesheet" crossorigin href="/quest-suit-vr/assets/index-7eGvZvQK.css">
+    <script type="module" crossorigin src="/quest-suit-vr/assets/index-BKENugsv.js"></script>
+    <link rel="stylesheet" crossorigin href="/quest-suit-vr/assets/index-DFWKPne2.css">
   </head>
   <body>
     <div id="ui-container">
-      <h1>World Explorer</h1>
+      <h1 class="panel-title">Big Back</h1>
 
       <!-- Character select -->
       <div class="control-group">
-        <label>Character</label>
-        <!-- One button per character, from src/data/characters.ts (src/web/characterButtons.ts) -->
-        <div id="character-buttons" style="display: flex; gap: 5px"></div>
+        <label>Hero</label>
+        <!-- One button per character, from src/characters (src/web/characterButtons.ts) -->
+        <div id="character-buttons" class="button-row"></div>
       </div>
 
       <!-- Areas: one run each (its mission, then its boss), from src/missions (src/web/areaButtons.ts) -->
       <div class="control-group">
-        <label>Areas (mission, then boss)</label>
-        <div id="area-buttons" style="display: flex; flex-wrap: wrap; gap: 5px"></div>
-        <div style="display: flex; gap: 5px">
-          <button id="btn-run-restart" style="flex: 1; display: none">Restart run</button>
-          <button id="btn-run-leave" style="flex: 1; display: none">Leave run</button>
+        <label>Areas: mission, then boss</label>
+        <div id="area-buttons" class="button-row wrap"></div>
+        <div class="button-row">
+          <button id="btn-run-restart" style="display: none">Restart run</button>
+          <button id="btn-run-leave" class="leave" style="display: none">Leave run</button>
         </div>
         <div id="mission-line" style="display: none"></div>
       </div>
 
       <!-- Free roam: no boss -->
       <div class="control-group">
-        <label>Free roam</label>
-        <div style="display: flex; flex-wrap: wrap; gap: 5px">
-          <button id="btn-training" style="flex: 1">Training</button>
-          <button id="btn-austin" style="flex: 1; border-left: 3px solid #2196f3">
-            Austin, TX
-          </button>
-          <button id="btn-metro" style="flex: 1">Metro</button>
-          <button id="btn-neon" style="flex: 1">Neon</button>
-          <button id="btn-mars" style="flex: 1; border: 1px solid #ff4400; color: #ffaa88">
-            Mars
-          </button>
+        <label>Free roam: no boss</label>
+        <div class="button-row wrap">
+          <button id="btn-training">Training</button>
+          <button id="btn-austin" class="online">Austin, TX</button>
+          <button id="btn-metro">Metro</button>
+          <button id="btn-neon">Neon</button>
+          <button id="btn-mars">Mars</button>
         </div>
-        <div style="display: flex; gap: 5px">
-          <input type="text" id="city-input" placeholder="Or search city..." style="flex-grow: 1" />
+        <div class="button-row">
+          <input type="text" id="city-input" placeholder="Or search city..." />
           <button id="btn-search">Go</button>
         </div>
         <div id="loading">Loading...</div>
@@ -56,29 +52,20 @@
 
       <!-- Co-op rooms: one player hosts, the other joins with the 4-character code -->
       <div class="control-group" id="net-group">
-        <label>Multiplayer (co-op)</label>
+        <label>Co-op</label>
         <div id="net-title">Multiplayer</div>
         <div id="net-lines"></div>
-        <div style="display: flex; gap: 5px">
-          <button id="btn-net-host" style="flex: 1">Host a room</button>
-          <input
-            type="text"
-            id="net-code"
-            placeholder="Code"
-            maxlength="5"
-            autocomplete="off"
-            style="width: 70px; text-transform: uppercase"
-          />
+        <div class="button-row">
+          <button id="btn-net-host">Host a room</button>
+          <input type="text" id="net-code" placeholder="Code" maxlength="5" autocomplete="off" />
           <button id="btn-net-join">Join</button>
-          <button id="btn-net-leave" style="display: none">Leave room</button>
+          <button id="btn-net-leave" class="leave" style="display: none">Leave room</button>
         </div>
       </div>
 
       <button id="btn-controls" class="controls-open">Controls (Quest 3 and keyboard)</button>
       <div class="instructions">
-        • <strong>Berserker:</strong> never flies. Left Stick run (click: sprint), A / X jump,
-        Trigger attack (far: dash at the enemy; close: combo, keep pressing), Right Stick snap turn
-        (desktop: WASD, Space jump, Shift sprint, F attack)
+        <kbd>Tab</kbd> or <kbd>M</kbd>: the menu (shop, heroes, settings)
       </div>
       <div id="weapon-line">Weapon: Blaster</div>
       <div id="boss-line" style="display: none"></div>
@@ -87,12 +74,10 @@
     </div>
 
     <div id="game-over-screen">
-      <div class="go-title">SYSTEM FAILURE</div>
+      <div class="go-title">KNOCKED OUT!</div>
       <div class="go-score" id="final-score">Score: 0</div>
-      <button class="go-btn" id="btn-reboot">REBOOT SYSTEM</button>
-      <p style="margin-top: 20px; color: #ff0; font-size: 18px">
-        Press ANY Trigger in VR to Restart
-      </p>
+      <button class="go-btn" id="btn-reboot">TRY AGAIN</button>
+      <p class="go-note">In VR: pull any trigger</p>
     </div>
 
     <div id="run-results" class="hidden">
@@ -103,23 +88,34 @@
     <div id="error-log"></div>
     <div id="vr-status">Ready for VR</div>
 
+    <!-- The title page: the first thing on the flat page (mock 01). PLAY ON THIS SCREEN closes it;
+         INSTALL APP opens the install steps. -->
     <div id="install-card" class="hidden">
-      <div class="install-card-inner">
-        <img src="/quest-suit-vr/icons/icon-192.png" alt="Big Back" class="install-icon" />
-        <h2>Install Big Back</h2>
-        <button id="install-btn" class="install-btn" style="display: none">Install Now</button>
-        <ol class="install-steps">
-          <li>Open this link in the <strong>Quest Browser</strong>.</li>
-          <li>
-            Tap the <strong>install icon</strong> in the address bar (or open the
-            <strong>⋮ menu</strong> and tap <strong>"Install app"</strong>).
-          </li>
-          <li>
-            Find <strong>Big Back</strong> in your App Library under
-            <strong>Unknown Sources</strong> or <strong>Apps</strong>.
-          </li>
-        </ol>
-        <button id="install-dismiss" class="install-btn secondary">Skip for now</button>
+      <div class="title-card">
+        <button id="install-open" class="install-chip">Install app</button>
+        <div class="title-faces left" id="title-faces-left"></div>
+        <div class="title-faces right" id="title-faces-right"></div>
+        <h1 class="title-logo">Big Back</h1>
+        <p class="title-tag">Suit up in the Big Back!</p>
+        <button id="title-enter-vr" class="title-btn primary">Enter VR</button>
+        <button id="install-dismiss" class="title-btn">Play on this screen</button>
+        <p class="title-offline">Works offline once installed</p>
+        <div id="install-steps-box" class="install-card-inner hidden">
+          <img src="/quest-suit-vr/icons/icon-192.png" alt="Big Back" class="install-icon" />
+          <h2>Install Big Back</h2>
+          <button id="install-btn" class="install-btn" style="display: none">Install Now</button>
+          <ol class="install-steps">
+            <li>Open this link in the <strong>Quest Browser</strong>.</li>
+            <li>
+              Tap the <strong>install icon</strong> in the address bar (or open the
+              <strong>⋮ menu</strong> and tap <strong>"Install app"</strong>).
+            </li>
+            <li>
+              Find <strong>Big Back</strong> in your App Library under
+              <strong>Unknown Sources</strong> or <strong>Apps</strong>.
+            </li>
+          </ol>
+        </div>
       </div>
     </div>
     <div id="perf-report" class="hidden">
